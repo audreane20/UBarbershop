@@ -1,0 +1,5 @@
+Once online: 
+- Edit icon link for email
+- Make sure email reminders send if appointment is taken more than 72 hours before appointment date
+
+

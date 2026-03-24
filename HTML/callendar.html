@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>UBarbershop – Admin Calendar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../css/callendar.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="logo logo-link" href="home.html" aria-label="UBarbershop Home">
+        <img src="../images/logo.png" class="logo-img" />
+        <span class="logo-text">UBarbershop</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="callendar.html" data-i18n="nav.calendar">
+          Appointments Calendar
+        </a>
+        <a href="admin.html" data-i18n="nav.addEmployee">
+          Add Employee
+        </a>
+        <a href="unavailable.html" data-i18n="nav.unavailable">
+          Unavailable Days
+        </a>
+        <a href="services.html" data-i18n="nav.services">
+          Services
+        </a>
+        <a href="home.html" data-i18n="nav.exitAdmin">
+          Exit Admin Mode
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-switcher">
+          <button data-lang="en">EN</button>
+          <button data-lang="fr">FR</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content admin-page">
+      <h1 data-i18n="calendar.pageTitle">
+        Admin – Appointments
+      </h1>
+
+      <div class="admin-card calendar-card">
+        <div class="cal-wrap">
+          <!-- LEFT -->
+          <section class="cal-grid-wrap">
+            <div class="cal-month">
+              <button
+                class="btn ghost"
+                id="cal-prev"
+                type="button"
+                data-i18n-aria="calendar.monthAriaPrev"
+                aria-label="Previous month"
+              >
+                ←
+              </button>
+
+              <div class="cal-title" id="cal-title">
+                Month YYYY
+              </div>
+
+              <button
+                class="btn ghost"
+                id="cal-next"
+                type="button"
+                data-i18n-aria="calendar.monthAriaNext"
+                aria-label="Next month"
+              >
+                →
+              </button>
+            </div>
+
+            <div class="cal-weekdays" id="cal-weekdays"></div>
+            <div class="cal-grid" id="cal-grid"></div>
+          </section>
+
+          <!-- RIGHT -->
+          <section class="cal-side">
+            <div class="cal-filters">
+              <input
+                id="search"
+                type="text"
+                data-i18n-placeholder="calendar.searchPlaceholder"
+                placeholder="Search..."
+              />
+
+              <select id="dresser-filter">
+                <option value="" data-i18n="calendar.allHairdressers">
+                  All hairdressers
+                </option>
+              </select>
+            </div>
+
+            <div class="cal-side-head">
+              <h2 id="selected-title"></h2>
+              <div class="cal-meta" id="selected-meta"></div>
+            </div>
+
+            <div id="appoint-admin-list" class="appoint-list"></div>
+          </section>
+        </div>
+
+        <div
+          id="admin-calendar-msg"
+          class="form-success"
+          aria-live="polite"
+        ></div>
+
+        <div
+          id="admin-calendar-error"
+          class="form-error"
+          aria-live="polite"
+        ></div>
+      </div>
+    </main>
+
+    <!-- Confirm Cancel Modal -->
+    <div class="confirm-overlay" id="cancel-confirm-overlay" hidden>
+      <div
+        class="confirm-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cancel-confirm-title"
+      >
+        <h2
+          id="cancel-confirm-title"
+          data-i18n="confirm.deleteAppointment"
+        >
+          Are you sure?
+        </h2>
+
+        <div class="confirm-actions">
+          <button
+            class="btn primary"
+            id="cancel-confirm-yes"
+            type="button"
+            data-i18n="confirm.confirmAction"
+          >
+            Yes, cancel appointment
+          </button>
+
+          <button
+            class="btn ghost"
+            id="cancel-confirm-no"
+            type="button"
+            data-i18n="confirm.keepAction"
+          >
+            Keep appointment
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p class="footer-bottom">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        UBarbershop
+      </p>
+    </footer>
+
+    <script src="../js/lang.js"></script>
+    <script type="module" src="../js/callendar.js"></script>
+
+    <script src="../js/hamburgerMenu.js"></script>
+    <script src="../js/activeNav.js"></script>
+  </body>
+</html>

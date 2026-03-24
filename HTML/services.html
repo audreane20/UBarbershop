@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>UBarbershop – Admin Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="logo logo-link" href="home.html" aria-label="UBarbershop Home">
+        <img src="../images/logo.png" class="logo-img" />
+        <span class="logo-text">UBarbershop</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="callendar.html" data-i18n="nav.calendar">Appointments Calendar</a>
+        <a href="admin.html" data-i18n="nav.addEmployee">Add Employee</a>
+        <a href="unavailable.html" data-i18n="nav.unavailable">Unavailable Days</a>
+        <a href="services.html" data-i18n="nav.services">Services</a>
+        <a href="home.html" data-i18n="nav.exitAdmin">Exit Admin Mode</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-switcher">
+          <button data-lang="en">EN</button>
+          <button data-lang="fr">FR</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content admin-page">
+      <h1 data-i18n="servicesAdmin.title">Services</h1>
+
+      <div class="admin-card">
+        <p class="admin-subtitle" data-i18n="servicesAdmin.subtitle">
+          Add, edit, or delete services. These services will appear on the booking page.
+        </p>
+
+        <div id="svc-msg" aria-live="polite"></div>
+        <div id="svc-error" aria-live="polite"></div>
+
+        <form id="svc-form" novalidate>
+          <!-- Service ID is generated automatically. Hidden field is used for edit mode. -->
+          <input id="svc-id" type="hidden" />
+
+          <label for="svc-en" data-i18n="servicesAdmin.nameEn">Name (EN)</label>
+          <input id="svc-en" type="text" required />
+
+          <label for="svc-fr" data-i18n="servicesAdmin.nameFr">Name (FR)</label>
+          <input id="svc-fr" type="text" required />
+
+          <div class="field-grid two">
+            <div class="field">
+              <label for="svc-duration" data-i18n="servicesAdmin.duration">
+                Duration (minutes)
+              </label>
+              <div class="input-wrap">
+                <input id="svc-duration" type="number" min="5" step="5" required />
+                <span class="suffix">min</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="svc-price" data-i18n="servicesAdmin.price">Price ($)</label>
+              <div class="input-wrap">
+                <span class="prefix">$</span>
+                <input
+                  id="svc-price"
+                  class="has-prefix"
+                  type="number"
+                  min="0"
+                  step="1"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="field-grid two" style="margin-top: 10px;">
+            <div class="field">
+              <label for="svc-order" data-i18n="servicesAdmin.order">
+                Sort order
+              </label>
+              <div class="input-wrap">
+                <span class="prefix">#</span>
+                <input
+                  id="svc-order"
+                  class="has-prefix"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+            </div>
+
+            <div class="field" style="display: flex; align-items: flex-end;">
+              <label class="check-row">
+                <input id="svc-active" type="checkbox" checked />
+                <span data-i18n="servicesAdmin.active">Active</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="admin-actions">
+            <button
+              class="btn primary"
+              type="submit"
+              data-i18n="servicesAdmin.add"
+            >
+              Save service
+            </button>
+
+            <button
+              class="btn ghost"
+              type="button"
+              id="svc-clear"
+              data-i18n="servicesAdmin.clear"
+            >
+              Clear
+            </button>
+          </div>
+        </form>
+
+        <div class="employee-list-wrap" style="margin-top: 1.25rem;">
+          <h2
+            class="employee-list-title"
+            data-i18n="servicesAdmin.listTitle"
+          >
+            Current services
+          </h2>
+          <div id="svc-list"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-bottom">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        UBarbershop
+      </p>
+    </footer>
+
+    <script src="../js/lang.js"></script>
+    <script type="module" src="../js/servicesAdmin.js"></script>
+
+    <!-- Gate admin pages behind login -->
+    <script type="module">
+      import { auth } from "../js/firebase.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = "login.html";
+        }
+      });
+    </script>
+
+    <script src="../js/hamburgerMenu.js"></script>
+    <script src="../js/activeNav.js"></script>
+  </body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>UBarbershop – Appointment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="../css/appointment.css" rel="stylesheet" />
+    <link href="../css/header_footer.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+
+        <!-- LEFT SIDE -->
+        <div class="header-left">
+            <a class="logo" href="home.html">
+                <img src="../images/logo.png" alt="UBarbershop Logo" class="logo-img" />
+                <span class="logo-text">UBarbershop</span>
+            </a>
+
+            <a
+                href="appointment.html"
+                class="btn primary"
+                id="header-appoint-button"
+                data-i18n="nav.appointBtn"
+            >
+                Make an Appointment
+            </a>
+        </div>
+
+        <!-- CENTER -->
+        <nav class="main-nav">
+            <a href="home.html" data-i18n="nav.home">Home</a>
+            <a href="about.html" data-i18n="nav.about">About</a>
+            <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        </nav>
+
+        <!-- RIGHT SIDE -->
+        <div class="header-actions">
+            <a href="login.html" class="btn-login account-link" id="account-link">
+                Login
+            </a>
+
+            <a
+                href="callendar.html"
+                class="btn-login admin-tab"
+                id="admin-tab"
+                data-i18n="nav.adminMode"
+                style="display:none;"
+            >
+                Admin Mode
+            </a>
+
+            <div class="lang-switcher">
+                <button data-lang="en">EN</button>
+                <button data-lang="fr">FR</button>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Login required modal -->
+    <div class="login-required-overlay" id="login-required-overlay" hidden>
+        <div
+            class="login-required-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="login-required-title"
+        >
+            <h2 id="login-required-title" data-i18n="appoint.loginRequiredTitle">
+                Login required
+            </h2>
+
+            <p data-i18n="appoint.loginRequiredMsg">
+                Please log in to book an appointment.
+            </p>
+
+            <div class="login-required-actions">
+                <a
+                    href="login.html"
+                    class="btn primary"
+                    id="login-required-login"
+                    data-i18n="appoint.loginRequiredLogin"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="register.html"
+                    class="btn ghost"
+                    id="login-required-register"
+                    data-i18n="appoint.loginRequiredRegister"
+                >
+                    Register
+                </a>
+
+                <a
+                    href="home.html"
+                    class="btn ghost"
+                    data-i18n="appoint.loginRequiredBack"
+                >
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel confirmation modal -->
+    <div class="confirm-overlay" id="cancel-confirm-overlay" hidden>
+        <div
+            class="confirm-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cancel-confirm-title"
+        >
+            <h2 id="cancel-confirm-title" data-i18n="confirm.deleteAppointment">
+                Are you sure?
+            </h2>
+
+            <div class="confirm-actions">
+                <button
+                    type="button"
+                    class="btn primary"
+                    id="cancel-confirm-yes"
+                    data-i18n="confirm.confirmAction"
+                >
+                    Yes, cancel appointment
+                </button>
+
+                <button
+                    type="button"
+                    class="btn ghost"
+                    id="cancel-confirm-no"
+                    data-i18n="confirm.keepAction"
+                >
+                    Keep appointment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <main class="page-content appointment-page">
+
+        <h1 data-i18n="appoint.title">Schedule an Appointment</h1>
+
+        <div class="appoint-card">
+
+            <p class="appoint-subtitle" data-i18n="appoint.subtitle">
+                Choose a service and time. We’ll confirm your appointment.
+            </p>
+
+            <div id="appoint-error" class="form-error" aria-live="polite"></div>
+            <div id="appoint-success" class="form-success" aria-live="polite"></div>
+
+            <form id="appoint-form" class="appoint-form" novalidate>
+
+                <!-- Service -->
+                <label for="service" data-i18n="appoint.serviceLabel">Service</label>
+                <select id="service" required>
+                    <option value="" data-i18n="appoint.servicePlaceholder">
+                        Select a service
+                    </option>
+                </select>
+
+                <!-- Hairdresser -->
+                <label data-i18n="appoint.dresserLabel">Hairdresser</label>
+                <div id="dresser-box" class="dresser-box">
+                    <!-- JS injects checkboxes -->
+                </div>
+
+                <small class="hint" data-i18n="appoint.dresserHint">
+                    "Any available" selects all hairdressers.
+                </small>
+
+                <!-- Date -->
+                <label data-i18n="appoint.dateLabel">Date</label>
+                <input id="date" type="hidden" required />
+
+                <div
+                    id="booking-calendar"
+                    class="booking-calendar"
+                    aria-label="Calendar"
+                ></div>
+
+                <!-- Time -->
+                <div class="row">
+                    <div class="col">
+                        <label for="time" data-i18n="appoint.timeLabel">Time</label>
+
+                        <select id="time" required>
+                            <option value="" data-i18n="appoint.timePlaceholder">
+                                Select a time
+                            </option>
+                        </select>
+
+                        <small id="time-hint" class="hint"></small>
+                    </div>
+                </div>
+
+                <!-- Name -->
+                <label for="name" data-i18n="appoint.nameLabel">Full Name</label>
+                <input
+                    id="name"
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    data-i18n-placeholder="appoint.namePlaceholder"
+                />
+
+                <!-- Email + Phone -->
+                <div class="row">
+
+                    <div class="col">
+                        <label for="email" data-i18n="appoint.emailLabel">Email</label>
+                        <input
+                            id="email"
+                            type="email"
+                            required
+                            placeholder="you@example.com"
+                            data-i18n-placeholder="appoint.emailPlaceholder"
+                        />
+                    </div>
+
+                    <div class="col">
+                        <label for="phone" data-i18n="appoint.phoneLabel">
+                            Phone (optional)
+                        </label>
+                        <input
+                            id="phone"
+                            type="tel"
+                            placeholder="(450) 000-0000"
+                            data-i18n-placeholder="appoint.phonePlaceholder"
+                        />
+                    </div>
+
+                </div>
+
+                <!-- Notes -->
+                <label for="notes" data-i18n="appoint.notesLabel">
+                    Notes (optional)
+                </label>
+
+                <textarea
+                    id="notes"
+                    rows="3"
+                    placeholder="Anything we should know?"
+                    data-i18n-placeholder="appoint.notesPlaceholder"
+                ></textarea>
+
+                <!-- Submit -->
+                <button
+                    type="submit"
+                    class="btn primary"
+                    data-i18n="appoint.confirmBtn"
+                >
+                    Confirm Appointment
+                </button>
+
+            </form>
+
+            <!-- Appointments list -->
+            <div class="appoint-list-wrap">
+
+                <h2 class="appoint-list-title" data-i18n="appoint.upcomingTitle">
+                    Your upcoming appointments
+                </h2>
+
+                <div id="appoint-list" class="appoint-list"></div>
+
+                <button
+                    type="button"
+                    id="clear-appoint"
+                    class="btn ghost"
+                    data-i18n="appoint.pastBtn"
+                >
+                    Passed appointments
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Past appointments modal -->
+    <div
+        class="passed-appointments-overlay"
+        id="passed-appointments-overlay"
+        hidden
+    >
+        <div
+            class="passed-appointments-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="passed-appointments-title"
+        >
+            <div class="passed-appointments-header">
+                <h2 id="passed-appointments-title" data-i18n="appoint.pastTitle">
+                    Past appointments
+                </h2>
+
+                <button
+                    type="button"
+                    id="passed-appointments-close"
+                    class="btn ghost passed-close-btn"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+            </div>
+
+            <div
+                id="passed-appointments-list"
+                class="appoint-list passed-appointments-list"
+            ></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <div class="footer-cols">
+
+            <div>
+                <h4 data-i18n="footer.contact">Contact</h4>
+                <p>
+                    <span data-i18n="footer.phoneLabel">Phone:</span>
+                    (450) 472-0174
+                </p>
+            </div>
+
+            <div>
+                <h4 data-i18n="footer.follow">Follow Us</h4>
+
+                <div class="social-icons">
+                    <a
+                        href="https://www.instagram.com/salonubarbershop/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                    >
+                        <img src="../images/instagram.png" alt="Instagram" />
+                    </a>
+
+                    <a
+                        href="https://www.facebook.com/p/U-barbershop-100067913270000/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook"
+                    >
+                        <img src="../images/facebook.png" alt="Facebook" />
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="footer-bottom">
+            © <script>document.write(new Date().getFullYear())</script> UBarbershop
+        </p>
+
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/headerAuth.js" type="module"></script>
+    <script src="../js/lang.js"></script>
+    <script src="../js/appointment.js?v=slotlocks1" type="module"></script>
+    <script src="../js/hamburgerMenu.js"></script>
+    <script src="../js/activeNav.js"></script>
+
+</body>
+</html>

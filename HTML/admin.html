@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>UBarbershop – Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="logo logo-link" href="home.html" aria-label="UBarbershop Home">
+        <img src="../images/logo.png" class="logo-img" />
+        <span class="logo-text">UBarbershop</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="callendar.html" data-i18n="nav.calendar">
+          Appointments Calendar
+        </a>
+        <a href="admin.html" data-i18n="nav.addEmployee">
+          Add Employee
+        </a>
+        <a href="unavailable.html" data-i18n="nav.unavailable">
+          Unavailable Days
+        </a>
+        <a href="services.html" data-i18n="nav.services">
+          Services
+        </a>
+        <a href="home.html" data-i18n="nav.exitAdmin">
+          Exit Admin Mode
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-switcher">
+          <button data-lang="en">EN</button>
+          <button data-lang="fr">FR</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content admin-page">
+      <h1 data-i18n="admin.title">Admin</h1>
+
+      <div class="admin-card">
+        <p class="admin-subtitle" data-i18n="admin.subtitle">
+          Add hairdressers and set their working days + hours.
+        </p>
+
+        <div id="admin-msg" aria-live="polite"></div>
+        <div id="admin-error" aria-live="polite"></div>
+
+        <form id="employee-form" novalidate>
+          <label for="emp-name" data-i18n="admin.name">Name</label>
+          <input
+            id="emp-name"
+            type="text"
+            data-i18n-placeholder="admin.namePlaceholder"
+            required
+          />
+
+          <label data-i18n="admin.workSchedule">Work schedule</label>
+          <div class="week-grid" id="week-grid"></div>
+
+          <div class="admin-actions">
+            <button
+              class="btn primary"
+              type="submit"
+              data-i18n="admin.addEmployee"
+            >
+              Add employee
+            </button>
+          </div>
+        </form>
+
+        <div class="employee-list-wrap">
+          <h2
+            class="employee-list-title"
+            data-i18n="admin.currentEmployees"
+          >
+            Current employees
+          </h2>
+          <div id="employee-list"></div>
+        </div>
+      </div>
+
+      <!-- Edit Modal -->
+      <div class="modal-overlay" id="edit-overlay" hidden></div>
+
+      <div
+        class="modal"
+        id="edit-modal"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="edit-title"
+      >
+        <div class="modal-header">
+          <h2 id="edit-title" data-i18n="admin.editTitle">
+            Edit stylist
+          </h2>
+          <button
+            type="button"
+            class="btn icon"
+            id="edit-close"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+        </div>
+
+        <form id="edit-form" class="modal-body" novalidate>
+          <label for="edit-name" data-i18n="admin.name">Name</label>
+          <input id="edit-name" type="text" required />
+
+          <label data-i18n="admin.workSchedule">Work schedule</label>
+          <div class="week-grid" id="edit-week-grid"></div>
+
+          <div class="modal-actions">
+            <button
+              type="button"
+              class="btn ghost"
+              id="edit-cancel"
+              data-i18n="admin.cancel"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              class="btn primary"
+              data-i18n="admin.saveChanges"
+            >
+              Save changes
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- /Edit Modal -->
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-bottom">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        UBarbershop
+      </p>
+    </footer>
+
+    <!-- IMPORTANT: lang.js must load first -->
+    <script src="../js/lang.js"></script>
+    <script type="module" src="../js/admin.js"></script>
+
+    <!-- Auth guard -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBnDjbaHiAZKcxJP8WbDFM14l_olFGq_GU",
+        authDomain: "ubarbershop-83b29.firebaseapp.com",
+        projectId: "ubarbershop-83b29",
+        storageBucket: "ubarbershop-83b29.firebasestorage.app",
+        messagingSenderId: "407171377595",
+        appId: "1:407171377595:web:2b4bd8141af2c18b4ebc9e",
+        measurementId: "G-BMTF48DC4C"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = "login.html";
+        }
+      });
+    </script>
+
+    <script src="../js/hamburgerMenu.js"></script>
+    <script src="../js/activeNav.js"></script>
+  </body>
+</html>

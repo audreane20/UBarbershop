@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="../css/profile.css" rel="stylesheet" />
+    <link href="../css/header_footer.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+
+        <!-- LEFT SIDE -->
+        <div class="header-left">
+            <a class="logo" href="home.html">
+                <img src="../images/logo.png" alt="UBarbershop Logo" class="logo-img" />
+                <span class="logo-text">UBarbershop</span>
+            </a>
+
+            <a
+                href="appointment.html"
+                class="btn primary"
+                id="header-appoint-button"
+                data-i18n="appoint.submit"
+            >
+                Make an Appointment
+            </a>
+        </div>
+
+        <!-- CENTER -->
+        <nav class="main-nav">
+            <a href="home.html" data-i18n="nav.home">Home</a>
+            <a href="about.html" data-i18n="nav.about">About</a>
+            <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        </nav>
+
+        <!-- RIGHT SIDE -->
+        <div class="header-actions">
+            <a href="login.html" class="btn-login account-link" id="account-link">
+                Login
+            </a>
+
+            <a
+                href="callendar.html"
+                class="btn-login admin-tab"
+                id="admin-tab"
+                data-i18n="nav.adminMode"
+                style="display:none;"
+            >
+                Admin Mode
+            </a>
+
+            <div class="lang-switcher">
+                <button data-lang="en">EN</button>
+                <button data-lang="fr">FR</button>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Main -->
+    <main class="page-container">
+
+        <div class="box">
+
+            <h2 data-i18n="auth.profile.title">My Profile</h2>
+
+            <form id="profile-form">
+
+                <label data-i18n="auth.name.label">Name</label>
+                <input id="profile-name" type="text" />
+
+                <label data-i18n="auth.email.label">Email</label>
+                <input id="profile-email" type="email" disabled />
+
+                <button
+                    type="submit"
+                    class="btn primary"
+                    data-i18n="auth.profile.save"
+                >
+                    Save Changes
+                </button>
+
+                <p id="profile-msg"></p>
+
+            </form>
+
+            <button
+                id="logout-btn"
+                class="btn logout-btn"
+                data-i18n="auth.profile.logout"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <div class="footer-cols">
+
+            <div>
+                <h4 data-i18n="footer.contact">Contact</h4>
+                <p>
+                    <span data-i18n="footer.phoneLabel">Phone:</span>
+                    (450) 472-0174
+                </p>
+            </div>
+
+            <div>
+                <h4 data-i18n="footer.follow">Follow Us</h4>
+
+                <div class="social-icons">
+                    <a
+                        href="https://www.instagram.com/salonubarbershop/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                    >
+                        <img src="../images/instagram.png" alt="Instagram" />
+                    </a>
+
+                    <a
+                        href="https://www.facebook.com/p/U-barbershop-100067913270000/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook"
+                    >
+                        <img src="../images/facebook.png" alt="Facebook" />
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="footer-bottom">
+            © <script>document.write(new Date().getFullYear())</script> UBarbershop
+        </p>
+
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/profile.js" type="module"></script>
+    <script src="../js/lang.js"></script>
+    <script src="../js/headerAuth.js" type="module"></script>
+    <script src="../js/hamburgerMenu.js"></script>
+    <script src="../js/activeNav.js"></script>
+
+</body>
+</html>

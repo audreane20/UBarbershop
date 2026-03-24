@@ -1,0 +1,713 @@
+/* =========================
+   Reset + Base
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    min-height: 100%;
+    background: radial-gradient(circle at top, #242424, #0a0a0a);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: #fff;
+}
+
+/* =========================
+   BUTTONS (base)
+========================= */
+.btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    text-decoration: none; /* for <a class="btn"> */
+}
+
+    /* Primary */
+    .btn.primary {
+        background: #2563eb;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+        .btn.primary:hover {
+            background: #1d4ed8;
+        }
+
+
+.btn.ghost {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #cbd5e1;
+}
+
+.btn.ghost:hover {
+    background: rgba(255,255,255,0.06);
+    color: #ffffff;
+}
+
+.btn.ghost.danger {
+    border-color: rgba(239,68,68,0.75);
+    color: #ffd5d5;
+}
+
+.btn.ghost.danger:hover {
+    background: rgba(239,68,68,0.16);
+    color: #ffffff;
+}
+
+/* Appointment header button tweak */
+/* Language buttons */
+/* =========================
+   PAGE LAYOUT
+========================= */
+.page-content {
+    flex: 1;
+    padding: 110px 20px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.appointment-page h1 {
+    margin: 0 0 18px;
+    font-size: 2.2rem;
+    text-align: center;
+    font-weight: 800;
+}
+
+.appoint-card {
+    width: min(720px, 92vw);
+    background: rgba(0, 0, 0, 0.88);
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.appoint-subtitle {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+/* Errors / success */
+.form-error {
+    color: #f87171;
+    min-height: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.form-success {
+    color: #86efac;
+    min-height: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* =========================
+   FORM
+========================= */
+.appoint-form label {
+    display: block;
+    margin: 14px 0 6px;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.appoint-form input,
+.appoint-form select,
+.appoint-form textarea {
+    width: 100%;
+    background: #2f2f2f;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    outline: none;
+}
+
+    .appoint-form input::placeholder,
+    .appoint-form textarea::placeholder {
+        color: rgba(255, 255, 255, 0.55);
+    }
+
+.appoint-form textarea {
+    resize: none;
+}
+
+/* =========================
+   Hairdresser checkbox group
+========================= */
+/* ===== info icon tooltip beside employee name ===== */
+.emp-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.emp-info {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.06);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    cursor: default;
+}
+
+    .emp-info:hover {
+        border-color: rgba(37,99,235,0.7);
+        color: #dbeafe;
+    }
+
+/* tooltip */
+.emp-tooltip {
+    position: absolute;
+    left: 50%;
+    top: 120%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 240px;
+    background: rgba(0,0,0,0.92);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: #e5e7eb;
+    font-size: 12px;
+    line-height: 1.35;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+}
+
+    .emp-tooltip strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 12px;
+        color: #dbeafe;
+    }
+
+.emp-info:hover .emp-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* small arrow */
+.emp-tooltip::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent rgba(255,255,255,0.14) transparent;
+}
+
+.emp-tooltip::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0,0,0,0.92) transparent;
+}
+
+/* Tooltip rows: align day + hours */
+.emp-tooltip .hours-grid {
+    display: grid;
+    grid-template-columns: 92px 1fr; /* day column width */
+    column-gap: 12px;
+    row-gap: 4px;
+}
+
+.emp-tooltip .hours-day {
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+}
+
+.emp-tooltip .hours-time {
+    text-align: right; /* makes the times line up nicely */
+    color: rgba(255,255,255,0.9);
+}
+
+.emp-tooltip .hours-closed {
+    opacity: .7;
+}
+
+.dresser-box {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dresser-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.dresser-any-row {
+    background: rgba(37, 99, 235, 0.14);
+    border: 1px solid rgba(37, 99, 235, 0.45);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.dresser-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: #e5e7eb;
+    font-weight: 600;
+}
+
+.dresser-any {
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.dresser-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2563eb;
+}
+
+.hint {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    margin-top: 6px;
+    display: block;
+}
+
+/* =========================
+   BOOKING CALENDAR
+========================= */
+.booking-calendar {
+    margin-top: 10px;
+    margin-bottom: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 10px;
+    /* Smaller calendar */
+    max-width: 340px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.92rem;
+}
+
+.cal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 4px 2px 10px;
+}
+
+.cal-title {
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+
+.cal-nav {
+    display: inline-flex;
+    gap: 6px;
+}
+
+.cal-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    cursor: pointer;
+}
+
+    .cal-btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+    }
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    align-items: stretch;
+}
+
+.cal-dow {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding-bottom: 2px;
+}
+
+/* FIX: keep day tiles identical even when extra elements exist */
+.cal-day {
+    position: relative;
+    width: 100%;
+    height: 44px; /* fixed height (no growth) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    cursor: pointer;
+    padding: 0; /* prevent badge from affecting size */
+    line-height: 1; /* stable text height */
+    overflow: hidden; /* protects from layout shifts */
+}
+
+    .cal-day.is-empty {
+        border: 1px solid transparent;
+        background: transparent;
+        cursor: default;
+    }
+
+    .cal-day.is-disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+
+    .cal-day.is-selected {
+        outline: 2px solid rgba(37, 99, 235, 0.9);
+        background: rgba(37, 99, 235, 0.22);
+    }
+
+    /* Green dot (availability marker) */
+    .cal-day .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: #22c55e;
+        position: absolute;
+        bottom: 7px;
+    }
+
+    /* If you have a badge/count inside the day, this prevents tile resizing */
+    .cal-day .badge,
+    .cal-day .count,
+    .cal-day .appt-badge {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 6px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        font-size: 12px;
+        pointer-events: none;
+    }
+
+/* Two-column rows (date/time + phone/email) */
+.row {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.col {
+    flex: 1;
+}
+
+/* Submit button full width */
+.appoint-form .btn.primary {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px 14px;
+}
+
+/* =========================
+   SAVED APPOINTMENTS
+========================= */
+.appoint-list-wrap {
+    margin-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 14px;
+}
+
+.appoint-list-title {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    font-weight: 800;
+}
+
+.appoint-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.appoint-item {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+    .appoint-item strong {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+.appoint-meta {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.appoint-remove {
+    align-self: center;
+}
+
+#clear-appoint {
+    width: 100%;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 10px;
+}
+
+#clear-appoint:hover {
+    background: #f4f4f4;
+    color: #000000;
+}
+
+/* =========================
+   FOOTER
+========================= */
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 700px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .appoint-card {
+        padding: 20px;
+    }
+
+    .appointment-page h1 {
+        font-size: 1.9rem;
+    }
+
+    .page-content {
+        padding-top: 100px;
+    }
+
+    /* Time select disabled look */
+    #time:disabled {
+        background-color: #1a1a1a;
+        color: #666;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    /* Optional: smoother transition */
+    #time {
+        transition: all 0.2s ease;
+    }
+
+}
+
+
+/* =========================
+   Login-required modal
+   ========================= */
+.login-required-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 9999;
+}
+
+.login-required-modal {
+  width: min(560px, 100%);
+  background: rgba(0,0,0,0.92);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+}
+
+.login-required-modal h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+}
+
+.login-required-modal p {
+  margin: 0 0 18px;
+  color: rgba(255,255,255,0.85);
+}
+
+.login-required-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 10001;
+}
+
+.confirm-modal {
+  width: min(560px, 100%);
+  background: rgba(0,0,0,0.92);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+}
+
+.confirm-modal h2 {
+  margin: 0 0 18px;
+  font-size: 24px;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+
+
+/* =========================
+   Mobile: prevent horizontal scroll
+   (ONLY mobile view)
+========================= */
+@media (max-width: 820px) {
+  html, body {
+    overflow-x: hidden;
+  }
+  /* safety: prevent any child from forcing width */
+  .page-content, .appointment-page, .appoint-card, .booking-calendar {
+    max-width: 100%;
+  }
+}
+
+
+.passed-appointments-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.passed-appointments-header h2 {
+    margin: 0;
+    font-size: 1.35rem;
+}
+
+.passed-close-btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.passed-appointments-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.72);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 10000;
+}
+
+.passed-appointments-modal {
+    width: min(760px, 100%);
+    max-height: min(80vh, 860px);
+    overflow: auto;
+    background: rgba(0,0,0,0.94);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    backdrop-filter: blur(10px);
+}
+
+.passed-appointments-list {
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    .appoint-item {
+        flex-direction: column;
+    }
+
+    .appoint-remove {
+        align-self: stretch;
+        width: 100%;
+    }
+
+    .passed-appointments-modal {
+        padding: 18px;
+    }
+}
+
+
+/* Danger remove button */
+.btn-remove{background:transparent;border:1px solid #ff4d4d;color:#ff4d4d;padding:6px 14px;border-radius:8px;font-size:14px;cursor:pointer;transition:all .2s ease}
+.btn-remove:hover{background:#ff4d4d;color:#fff}

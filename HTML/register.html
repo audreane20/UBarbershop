@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Register</title>
+
+    <link href="../css/login.css" rel="stylesheet" />
+    <link href="../css/header_footer.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+
+        <!-- LEFT SIDE -->
+        <div class="header-left">
+            <a class="logo" href="home.html">
+                <img src="../images/logo.png" alt="UBarbershop Logo" class="logo-img" />
+                <span class="logo-text">UBarbershop</span>
+            </a>
+
+            <a
+                href="appointment.html"
+                class="btn primary"
+                id="header-appoint-button"
+                data-i18n="appoint.submit"
+            >
+                Make an Appointment
+            </a>
+        </div>
+
+        <!-- CENTER -->
+        <nav class="main-nav">
+            <a href="home.html" data-i18n="nav.home">Home</a>
+            <a href="about.html" data-i18n="nav.about">About</a>
+            <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        </nav>
+
+        <!-- RIGHT SIDE -->
+        <div class="header-actions">
+            <a href="login.html" class="btn-login account-link" id="account-link">
+                Login
+            </a>
+
+            <a
+                href="callendar.html"
+                class="btn-login admin-tab"
+                id="admin-tab"
+                data-i18n="nav.adminMode"
+                style="display:none;"
+            >
+                Admin Mode
+            </a>
+
+            <div class="lang-switcher">
+                <button data-lang="en">EN</button>
+                <button data-lang="fr">FR</button>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Main -->
+    <div class="page-container">
+
+        <div class="box">
+
+            <h2 data-i18n="auth.register.title">Register</h2>
+
+            <form id="registerForm">
+
+                <label data-i18n="auth.name.label">Name</label>
+                <input
+                    id="regName"
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    data-i18n-placeholder="auth.name.placeholder"
+                />
+
+                <label data-i18n="auth.email.label">Email</label>
+                <input
+                    id="regEmail"
+                    type="email"
+                    required
+                    placeholder="Email"
+                    data-i18n-placeholder="auth.email.placeholder"
+                />
+
+                <label data-i18n="auth.password.label">Password</label>
+                <input
+                    id="regPassword"
+                    type="password"
+                    required
+                    placeholder="Password"
+                    data-i18n-placeholder="auth.password.placeholder"
+                />
+
+                <label data-i18n="auth.register.confirmLabel">Confirm Password</label>
+                <input
+                    id="regConfirmPassword"
+                    type="password"
+                    required
+                    placeholder="Confirm Password"
+                    data-i18n-placeholder="auth.register.confirmPlaceholder"
+                />
+
+                <button type="submit" data-i18n="auth.register.button">
+                    Register
+                </button>
+
+                <p class="login-link">
+                    <span data-i18n="auth.register.haveAccount">
+                        Already have an account?
+                    </span>
+                    <a href="login.html" data-i18n="auth.register.goLogin">
+                        Go to Login
+                    </a>
+                </p>
+
+                <p class="error" id="regError"></p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <div class="footer-cols">
+
+            <div>
+                <h4 data-i18n="footer.contact">Contact</h4>
+                <p>
+                    <span data-i18n="footer.phoneLabel">Phone:</span>
+                    (450) 472-0174
+                </p>
+            </div>
+
+            <div>
+                <h4 data-i18n="footer.follow">Follow Us</h4>
+
+                <div class="social-icons">
+                    <a
+                        href="https://www.instagram.com/salonubarbershop/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                    >
+                        <img src="../images/instagram.png" alt="Instagram" />
+                    </a>
+
+                    <a
+                        href="https://www.facebook.com/p/U-barbershop-100067913270000/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook"
+                    >
+                        <img src="../images/facebook.png" alt="Facebook" />
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="footer-bottom">
+            © <script>document.write(new Date().getFullYear())</script> UBarbershop
+        </p>
+
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/register.js" type="module"></script>
+    <script src="../js/lang.js"></script>
+    <script src="../js/headerAuth.js" type="module"></script>
+    <script src="../js/hamburgerMenu.js"></script>
+    <script src="../js/activeNav.js"></script>
+
+</body>
+</html>

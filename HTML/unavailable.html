@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>UBarbershop – Admin Unavailable Days</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="logo logo-link" href="home.html" aria-label="UBarbershop Home">
+        <img src="../images/logo.png" class="logo-img" />
+        <span class="logo-text">UBarbershop</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="callendar.html" data-i18n="nav.calendar">Appointments Calendar</a>
+        <a href="admin.html" data-i18n="nav.addEmployee">Add Employee</a>
+        <a href="unavailable.html" data-i18n="nav.unavailable">Unavailable Days</a>
+        <a href="services.html" data-i18n="nav.services">Services</a>
+        <a href="home.html" data-i18n="nav.exitAdmin">Exit Admin Mode</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-switcher">
+          <button data-lang="en">EN</button>
+          <button data-lang="fr">FR</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content admin-page">
+      <h1 data-i18n="unavailable.title">Unavailable Days</h1>
+
+      <div class="admin-card">
+        <p class="admin-subtitle" data-i18n="unavailable.subtitle">
+          Block days off (vacation, closed shop, etc.). Blocked days will not appear as available for booking.
+        </p>
+
+        <div class="unavail-tip" data-i18n="unavailable.tip">
+          Tip: choose the same start/end date to block only one day.
+        </div>
+
+        <div id="unavail-msg" aria-live="polite"></div>
+        <div id="unavail-error" aria-live="polite"></div>
+
+        <form id="unavail-form" novalidate>
+          <!-- Date range -->
+          <div class="range-grid">
+            <div class="field">
+              <label for="unavail-start" data-i18n="unavailable.startDate">
+                Start date
+              </label>
+              <input id="unavail-start" type="date" required />
+            </div>
+
+            <div class="range-arrow" aria-hidden="true">→</div>
+
+            <div class="field">
+              <label for="unavail-end" data-i18n="unavailable.endDate">
+                End date
+              </label>
+              <input id="unavail-end" type="date" required />
+            </div>
+          </div>
+
+          <div
+            id="unavail-preview"
+            class="unavail-preview"
+            aria-live="polite"
+          ></div>
+
+          <label for="unavail-employee" data-i18n="unavailable.employee">
+            Hairdresser
+          </label>
+          <select id="unavail-employee">
+            <option value="all" data-i18n="unavailable.all">
+              All hairdressers (shop closed)
+            </option>
+          </select>
+
+          <label for="unavail-reason" data-i18n="unavailable.reason">
+            Reason (optional)
+          </label>
+          <input
+            id="unavail-reason"
+            type="text"
+            data-i18n-placeholder="unavailable.reasonPlaceholder"
+            placeholder="Vacation / Closed"
+          />
+
+          <div class="admin-actions">
+            <button
+              class="btn primary"
+              type="submit"
+              data-i18n="unavailable.add"
+            >
+              Add
+            </button>
+          </div>
+        </form>
+
+        <div class="employee-list-wrap" style="margin-top: 1.25rem;">
+          <h2
+            class="employee-list-title"
+            data-i18n="unavailable.listTitle"
+          >
+            Upcoming blocked days
+          </h2>
+          <div id="unavail-list"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-bottom">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        UBarbershop
+      </p>
+    </footer>
+
+    <script src="../js/lang.js"></script>
+    <script type="module" src="../js/unavailable.js"></script>
+
+    <!-- Gate admin pages behind login -->
+    <script type="module">
+      import { auth } from "../js/firebase.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = "login.html";
+        }
+      });
+    </script>
+
+    <script src="../js/hamburgerMenu.js"></script>
+    <script src="../js/activeNav.js"></script>
+  </body>
+</html>

@@ -1,0 +1,423 @@
+﻿/* Uses admin.css for base look. This file only adds calendar layout. */
+
+/* =========================
+   LOGO
+========================= */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.logo-img {
+    height: 42px;
+    width: auto;
+    display: block;
+
+}
+
+.logo-text {
+    line-height: 1;
+    text-decoration: none;
+}
+
+/* Logo link: keep white and remove underline everywhere */
+.site-header .logo-link,
+.site-header .logo-link:visited,
+.site-header .logo-link:hover,
+.site-header .logo-link:active {
+    color: #fff;
+    text-decoration: none;
+}
+
+    /* Make sure the text span doesn't get decorated either */
+    .site-header .logo-link .logo-text {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    /* Optional: keep image aligned nicely */
+    .site-header .logo-link .logo-img {
+        display: block;
+    }
+
+
+/* =========================
+   LAYOUT
+========================= */
+.calendar-card {
+    width: min(1050px, 94vw);
+}
+
+.cal-top {
+    display: flex;
+    gap: 14px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.cal-month {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.cal-title {
+    width: 220px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.2rem;
+    letter-spacing: 0.3px;
+}
+
+.cal-wrap {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 14px;
+    align-items: start;
+}
+
+/* =========================
+   WEEKDAYS
+========================= */
+.cal-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+    .cal-weekdays > div {
+        text-align: center;
+        font-weight: 800;
+    }
+
+/* =========================
+   CALENDAR GRID
+========================= */
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    /* lock row height */
+    grid-auto-rows: 84px;
+    align-items: stretch;
+    margin-bottom: 0;
+}
+
+.cal-day {
+    position: relative;
+    height: 84px;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.08s ease, border-color 0.08s ease;
+}
+
+    .cal-day:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255,255,255,0.18);
+    }
+
+    .cal-day.muted {
+        opacity: 0.35;
+    }
+
+    .cal-day.selected {
+        border-color: rgba(37,99,235,0.85);
+        box-shadow: 0 0 0 1px rgba(37,99,235,0.55) inset;
+    }
+
+/* Date number stays top-left */
+.cal-num {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-weight: 900;
+    font-size: 0.98rem;
+    line-height: 1;
+}
+
+/* =========================
+   APPOINTMENT COUNT (CENTERED CIRCLE)
+========================= */
+.cal-badge {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Circle */
+    width: 28px;
+    height: 28px;
+    /* 👇 move it down a bit */
+    margin: auto;
+    transform: translateY(12px);
+    border-radius: 999px;
+    background: rgba(37,99,235,0.25);
+    border: 1px solid rgba(37,99,235,0.45);
+    color: #dbeafe;
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1.5;
+    pointer-events: none;
+}
+
+/* Right panel appointment list */
+#appoint-admin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* space between appointments */
+    margin-top: 12px;
+}
+
+    /* Each appointment container/card */
+    #appoint-admin-list .appoint-item {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 14px;
+        padding: 14px 14px;
+        box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    }
+
+        /* Make the top line stand out */
+        #appoint-admin-list .appoint-item strong {
+            display: block;
+            font-size: 1.02rem;
+            margin-bottom: 6px;
+        }
+
+    /* Meta lines */
+    #appoint-admin-list .appoint-meta {
+        margin-top: 2px;
+        color: rgba(255,255,255,0.72);
+        font-size: 0.95rem;
+    }
+
+    /* Remove button spacing */
+    #appoint-admin-list .btn {
+        margin-top: 10px;
+    }
+
+
+/* =========================
+   RIGHT SIDE
+========================= */
+.cal-side {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.cal-filters {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .cal-filters input,
+    .cal-filters select {
+        width: 100%;
+        background: #2f2f2f;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 12px;
+        height: 44px;
+    }
+
+.cal-side-head h2 {
+    margin-bottom: 4px;
+    font-size: 1.15rem;
+    font-weight: 900;
+}
+
+.cal-meta {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+#appoint-admin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cal-side-actions {
+    margin-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 12px;
+}
+
+/* Buttons */
+.btn.ghost {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #dbeafe;
+}
+
+    .btn.ghost:hover {
+        background: rgba(255,255,255,0.06);
+    }
+
+.btn.ghost.danger {
+    border-color: rgba(239,68,68,0.75);
+    color: #ffd5d5;
+}
+
+    .btn.ghost.danger:hover {
+        background: rgba(239,68,68,0.16);
+        color: #ffffff;
+    }
+
+/* Remove extra bottom spacing */
+.admin-card.calendar-card {
+    padding-bottom: 0;
+}
+
+.cal-grid-wrap {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+    .cal-wrap {
+        grid-template-columns: 1fr;
+    }
+
+    .cal-filters input,
+    .cal-filters select {
+        max-width: none;
+    }
+}
+
+/* =========================
+   MOBILE POLISH (PHONE ONLY)
+   - Desktop remains unchanged
+========================= */
+@media (max-width: 820px) {
+
+  /* tighter header area on phone */
+  .cal-top { gap: 10px; margin-bottom: 14px; }
+  .cal-month { gap: 10px; margin-bottom: 18px; }
+  .cal-title { width: auto; min-width: 0; font-size: 1.05rem; }
+
+  /* weekday row: compact pills */
+  .cal-weekdays { gap: 6px; }
+  .cal-weekdays > div {
+    font-size: 0.82rem;
+    padding: 6px 0;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* calendar tiles: shorter + cleaner */
+  .cal-grid {
+    gap: 6px;
+    grid-auto-rows: 64px;
+  }
+
+  .cal-day {
+    height: 64px;
+    padding: 8px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+    box-shadow: 0 10px 22px rgba(0,0,0,0.28);
+  }
+
+  .cal-num {
+    top: 8px;
+    left: 10px;
+    font-size: 0.92rem;
+  }
+
+  /* badge becomes a small count chip bottom-right (looks better on phone) */
+  .cal-badge {
+    inset: auto;
+    right: 8px;
+    bottom: 8px;
+    margin: 0;
+    transform: none;
+    width: 24px;
+    height: 24px;
+    font-size: 0.82rem;
+    line-height: 1;
+  }
+
+  /* right panel spacing */
+  .cal-side-head h2 { font-size: 1.05rem; }
+  .cal-meta { font-size: 0.9rem; margin-bottom: 6px; }
+
+  /* appointment cards: less bulky */
+  #appoint-admin-list .appoint-item {
+    padding: 12px 12px;
+    border-radius: 14px;
+  }
+  #appoint-admin-list .appoint-item strong {
+    font-size: 0.98rem;
+  }
+  #appoint-admin-list .appoint-meta { font-size: 0.92rem; }
+
+  /* filters: comfy but compact */
+  .cal-filters input,
+  .cal-filters select {
+    height: 42px;
+    border-radius: 12px;
+    padding: 10px 12px;
+  }
+}
+
+
+.confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.72);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 10001;
+}
+
+.confirm-modal {
+    width: min(560px, 100%);
+    background: rgba(0,0,0,0.92);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    backdrop-filter: blur(10px);
+}
+
+.confirm-modal h2 {
+    margin: 0 0 18px;
+    font-size: 24px;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
