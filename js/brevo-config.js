@@ -3,7 +3,7 @@
 // For now, paste your Brevo API key below to send confirmation emails directly with Brevo.
 
 export const BREVO_CONFIG = {
-    apiKey: "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",
+    apiKey: "ADD API KEY",
     senderName: "UBarbershop",
     senderEmail: "ubarbershop2023@gmail.com",
     confirmTemplateId: 1,

@@ -154,6 +154,34 @@
     <script src="../js/lang.js"></script>
     <script type="module" src="../js/admin.js"></script>
 
+<!-- Auth guard -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "ADD API KEY",
+        authDomain: "ubarbershop-83b29.firebaseapp.com",
+        projectId: "ubarbershop-83b29",
+        storageBucket: "ubarbershop-83b29.firebasestorage.app",
+        messagingSenderId: "407171377595",
+        appId: "1:407171377595:web:2b4bd8141af2c18b4ebc9e",
+        measurementId: "G-BMTF48DC4C"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = "login.html";
+        }
+      });
+    </script>
+
     <script src="../js/hamburgerMenu.js"></script>
     <script src="../js/activeNav.js"></script>
   </body>

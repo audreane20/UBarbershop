@@ -3,7 +3,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCqa5b3zQ2DH2cZ1gSZmt6c0t2fUriIYnY",
+    apiKey: "ADD API KEY",
     authDomain: "ubarbershop-39fce.firebaseapp.com",
     projectId: "ubarbershop-39fce",
     storageBucket: "ubarbershop-39fce.firebasestorage.app",
