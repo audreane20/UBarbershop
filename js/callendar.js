@@ -206,101 +206,53 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function sendBrevoEmail(payload) {
-    if (!BREVO_CONFIG?.apiKey || BREVO_CONFIG.apiKey.includes("PASTE_YOUR_BREVO_API_KEY")) {
-      console.warn("Brevo API key missing in js/brevo-config.js — skipping email.");
-      return { skipped: true, reason: "missing_brevo_api_key" };
-    }
-
-    const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+    const res = await fetch("../send-email.php", {
       method: "POST",
       headers: {
         accept: "application/json",
         "content-type": "application/json",
-        "api-key": BREVO_CONFIG.apiKey,
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({
+        action: "send",
+        payload,
+      }),
     });
 
     if (!res.ok) {
       const errorText = await res.text();
-      throw new Error(`Brevo send failed: ${res.status} ${errorText}`);
+      throw new Error(`Email send failed: ${res.status} ${errorText}`);
     }
 
     return res.json().catch(() => ({ ok: true }));
   }
-
 
   async function deleteScheduledBrevoEmail(messageId) {
     if (!messageId) {
       console.log("ℹ️ No scheduled reminder to delete (missing messageId)");
       return { skipped: true, reason: "missing_message_id" };
     }
-    if (!BREVO_CONFIG?.apiKey || BREVO_CONFIG.apiKey.includes("PASTE_YOUR_BREVO_API_KEY")) {
-      console.warn("⚠️ Could not delete scheduled reminder (missing Brevo API key)");
-      return { skipped: true, reason: "missing_brevo_api_key" };
-    }
 
-    console.log("🗑️ Deleting scheduled Brevo reminder:", String(messageId));
+    console.log("🗑️ Deleting scheduled reminder:", String(messageId));
 
-    const encodedId = encodeURIComponent(String(messageId));
-    const res = await fetch(`https://api.brevo.com/v3/smtp/email/${encodedId}`, {
-      method: "DELETE",
+    const res = await fetch("../send-email.php", {
+      method: "POST",
       headers: {
         accept: "application/json",
-        "api-key": BREVO_CONFIG.apiKey,
+        "content-type": "application/json",
       },
+      body: JSON.stringify({
+        action: "delete",
+        messageId: String(messageId),
+      }),
     });
 
     if (!res.ok && res.status !== 404) {
       const errorText = await res.text();
-      throw new Error(`Brevo delete failed: ${res.status} ${errorText}`);
+      throw new Error(`Email delete failed: ${res.status} ${errorText}`);
     }
 
-    console.log("✅ Scheduled Brevo reminder deleted (or already gone)", { messageId: String(messageId), status: res.status });
+    console.log("✅ Scheduled reminder deleted (or already gone)", { messageId: String(messageId), status: res.status });
     return { ok: true, status: res.status };
-  }
-
-  function buildCancellationEmailHtml({ name, serviceName, dateFormatted, timeRange, dresser, lang, cancelledBy }) {
-    const isFr = String(lang || "en").startsWith("fr");
-    const title = TT_LANG(lang, "appoint.email.cancelledTitle", isFr ? "Rendez-vous annulé" : "Appointment Cancelled");
-    const intro = TT_LANG(lang, cancelledBy === "salon" ? "appoint.email.cancelledSalonIntro" : "appoint.email.cancelledClientIntro", isFr ? "Votre rendez-vous a été annulé." : "Your appointment has been cancelled.");
-    const withLabel = TT_LANG(lang, "appoint.email.with", isFr ? "avec" : "with");
-    const thanks = TT_LANG(lang, "appoint.email.thanks", isFr ? "Merci," : "Thanks,");
-    const phoneLabel = TT_LANG(lang, "appoint.email.shopPhoneLabel", isFr ? "Téléphone" : "Phone");
-    const cancelledByLabel = TT_LANG(lang, cancelledBy === "salon" ? "appoint.email.cancelledBySalonLabel" : "appoint.email.cancelledByClientLabel", isFr ? "Annulé" : "Cancelled");
-
-    return `<!DOCTYPE html>
-<html lang="${isFr ? "fr" : "en"}">
-<body>
-  <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; font-size:14px; line-height:1.5; color:#fff; background-color:#333; padding:24px 12px; margin:0;">
-    <div style="max-width:600px; margin:0 auto; background-color:#333; padding:16px 18px;">
-      <div style="border-top:6px solid #b91c1c; padding:16px 0;">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-          <tr>
-            <td style="padding-right:10px; vertical-align:middle;">
-              <img src="https://i.postimg.cc/N009YmbD/logo-modified.png" alt="UBarbershop" width="35" height="35" style="display:block;width:35px;height:35px;border:0;outline:none;text-decoration:none;" />
-            </td>
-            <td style="vertical-align:middle;">
-              <span style="font-size:16px; font-weight:700; color:#fff;">${escapeHtml(title)}</span>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <p style="margin:0 0 10px 0;">${escapeHtml(name)},</p>
-      <p style="margin:0 0 14px 0;">${escapeHtml(intro)}</p>
-      <div style="margin:14px 0; padding:12px 0; border-top:1px solid rgba(255,255,255,.25); border-bottom:1px solid rgba(255,255,255,.25);">
-        <p style="margin:0;">
-          <strong>${escapeHtml(serviceName)}</strong> ${escapeHtml(withLabel)} <strong>${escapeHtml(dresser)}</strong><br/>
-          ${escapeHtml(dateFormatted)}, ${escapeHtml(timeRange)}
-        </p>
-      </div>
-      <p style="margin:0 0 14px 0; opacity:.92;">${escapeHtml(cancelledByLabel)}</p>
-      <p style="margin:0;">${escapeHtml(thanks)}<br/>UBarbershop</p>
-      <p style="margin:10px 0 0 0;">${escapeHtml(phoneLabel)}: (450) 472-0174</p>
-    </div>
-  </div>
-</body>
-</html>`;
   }
 
   async function sendCancellationEmail(appt, cancelledBy = "salon") {

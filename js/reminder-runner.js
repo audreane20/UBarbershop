@@ -130,30 +130,28 @@ function buildReminderEmailHtml({ name, serviceName, dateFormatted, timeRange, d
 }
 
 async function sendBrevoEmail(payload) {
-  if (!BREVO_CONFIG?.apiKey || BREVO_CONFIG.apiKey.includes("PASTE_YOUR_BREVO_API_KEY")) {
-    log("Brevo API key missing. Reminder skipped.");
-    return { skipped: true, reason: "missing_brevo_api_key" };
-  }
+        const res = await fetch("../send-email.php", {
+            method: "POST",
+            headers: {
+                accept: "application/json",
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({
+                action: "send",
+                payload,
+            }),
+        });
 
-  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
-    method: "POST",
-    headers: {
-      accept: "application/json",
-      "content-type": "application/json",
-      "api-key": BREVO_CONFIG.apiKey,
-    },
-    body: JSON.stringify(payload),
-  });
+        if (!res.ok) {
+            const errorText = await res.text();
+            throw new Error(`Email send failed: ${res.status} ${errorText}`);
+        }
 
-  if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(`Brevo send failed: ${res.status} ${errorText}`);
-  }
+        return res.json().catch(() => ({ ok: true }));
+    }
 
-  return res.json().catch(() => ({ ok: true }));
-}
 
-async function sendReminderEmail(appt) {
+    async function sendReminderEmailasync function sendReminderEmail(appt) {
   const lang = appt.lang || currentLang();
   const isFr = String(lang).startsWith("fr");
   const serviceName = (isFr ? appt.serviceNameFr : appt.serviceNameEn) || appt.serviceNameEn || appt.serviceNameFr || appt.serviceId || "Service";

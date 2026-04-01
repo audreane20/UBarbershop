@@ -1,3 +1,5 @@
 js/app-config.local.js
 .env
 config.php
+config.local.php
+send-email.local.php

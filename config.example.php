@@ -1,0 +1,2 @@
+<?php
+define('BREVO_API_KEY', 'PASTE_YOUR_BREVO_API_KEY_HERE');

@@ -1595,24 +1595,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function sendBrevoEmail(payload) {
-        if (!BREVO_CONFIG?.apiKey || BREVO_CONFIG.apiKey.includes("PASTE_YOUR_BREVO_API_KEY")) {
-            console.warn("Brevo API key missing in js/brevo-config.js — skipping email.");
-            return { skipped: true, reason: "missing_brevo_api_key" };
-        }
-
-        const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+        const res = await fetch("../send-email.php", {
             method: "POST",
             headers: {
                 accept: "application/json",
                 "content-type": "application/json",
-                "api-key": BREVO_CONFIG.apiKey,
             },
-            body: JSON.stringify(payload),
+            body: JSON.stringify({
+                action: "send",
+                payload,
+            }),
         });
 
         if (!res.ok) {
             const errorText = await res.text();
-            throw new Error(`Brevo send failed: ${res.status} ${errorText}`);
+            throw new Error(`Email send failed: ${res.status} ${errorText}`);
         }
 
         return res.json().catch(() => ({ ok: true }));
@@ -1624,33 +1621,38 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("ℹ️ No scheduled reminder to delete (missing messageId)");
             return { skipped: true, reason: "missing_message_id" };
         }
-        if (!BREVO_CONFIG?.apiKey || BREVO_CONFIG.apiKey.includes("PASTE_YOUR_BREVO_API_KEY")) {
-            console.warn("⚠️ Could not delete scheduled reminder (missing Brevo API key)");
-            return { skipped: true, reason: "missing_brevo_api_key" };
-        }
 
-        console.log("🗑️ Deleting scheduled Brevo reminder:", String(messageId));
+        console.log("🗑️ Deleting scheduled reminder:", String(messageId));
 
-        const encodedId = encodeURIComponent(String(messageId));
-        const res = await fetch(`https://api.brevo.com/v3/smtp/email/${encodedId}`, {
-            method: "DELETE",
+        const res = await fetch("../send-email.php", {
+            method: "POST",
             headers: {
                 accept: "application/json",
-                "api-key": BREVO_CONFIG.apiKey,
+                "content-type": "application/json",
             },
+            body: JSON.stringify({
+                action: "delete",
+                messageId: String(messageId),
+            }),
         });
 
         if (!res.ok && res.status !== 404) {
             const errorText = await res.text();
-            throw new Error(`Brevo delete failed: ${res.status} ${errorText}`);
+            throw new Error(`Email delete failed: ${res.status} ${errorText}`);
         }
 
-        console.log("✅ Scheduled Brevo reminder deleted (or already gone)", { messageId: String(messageId), status: res.status });
+        console.log("✅ Scheduled reminder deleted (or already gone)", { messageId: String(messageId), status: res.status });
         return { ok: true, status: res.status };
     }
 
     function TT_LANG(langCode, path, vars) {
-        if (window.tLang) return window.tLang(String(langCode || "en").startsWith("fr") ? "fr" : "en", path, vars);
+        if (window.tLang) {
+            return window.tLang(
+                String(langCode || "en").startsWith("fr") ? "fr" : "en",
+                path,
+                vars
+            );
+        }
         return TT(path, vars);
     }
 
