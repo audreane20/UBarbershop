@@ -1,0 +1,14 @@
+{
+    "name": "student/ubarbershop",
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "1.*",
+        "twig/twig": "^3.24",
+        "slim/twig-view": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Student\\UBarberShop\\": "src/"
+        }
+    }
+}
