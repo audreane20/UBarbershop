@@ -1,0 +1,198 @@
+﻿/* login.css — UBarbershop (Login + Google pill) */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    min-height: 100%;
+    background: radial-gradient(circle at top, #242424, #0a0a0a);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: #fff;
+}
+
+
+.page-container {
+    flex: 1; /* pushes footer down */
+    display: flex;
+    align-items: center; /* vertical center */
+    justify-content: center; /* horizontal center */
+    padding-top: 100px; /* space for fixed header */
+    padding-bottom: 40px;
+}
+
+/* Login box */
+.box {
+    width: 320px;
+    padding: 20px;
+    border-radius: 6px;
+    background: transparent;
+    backdrop-filter: blur(12px);
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: normal;
+    color: white;
+    font-size: 35px;
+}
+
+/* Autofill (keep dark background + white border/text) */
+.page-container .box input:-webkit-autofill,
+.page-container .box input:-webkit-autofill:focus {
+    border: 1px solid white !important;
+    -webkit-text-fill-color: white !important;
+    -webkit-box-shadow: 0 0 0 1000px black inset !important;
+}
+
+/* Inputs + buttons sizing (scoped to login box) */
+.page-container .box input,
+.page-container .box button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Input field styling */
+.page-container .box input {
+    border: 1px solid #ccc;
+    outline: none;
+    background: black;
+    color: white;
+}
+
+    .page-container .box input:focus {
+        border-color: white;
+        box-shadow: 0 0 4px rgba(30, 41, 59, 0.4);
+    }
+
+.page-container .box label {
+    color: white;
+    display: block;
+    margin-bottom: 6px;
+    padding-top: 10px;
+}
+
+/* ✅ Primary (email/password) button only — excludes OAuth pill */
+.page-container .box button:not(.oauth-pill) {
+    background: #2563EB;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+    .page-container .box button:not(.oauth-pill):hover {
+        opacity: 0.50;
+    }
+
+/* Links */
+.login-link,
+.register-link {
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+    .login-link a,
+    .register-link a {
+        color: #7aa7ff;
+        text-decoration: none;
+    }
+
+        .login-link a:hover,
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+/* Error message */
+.error {
+    color: red;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Divider (OR) */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 0;
+    color: rgba(255,255,255,0.55);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+    .auth-divider::before,
+    .auth-divider::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: rgba(255,255,255,0.12);
+    }
+
+/* ✅ Google button — ChatGPT-style pill */
+.page-container .box .oauth-pill {
+    width: 100%;
+    height: 44px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #eaeaea;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+    margin-bottom: 12px;
+}
+
+    .page-container .box .oauth-pill:hover {
+        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .page-container .box .oauth-pill:active {
+        transform: translateY(1px);
+    }
+
+/* Icon pinned to left, text centered */
+.page-container .box .oauth-icon-wrap {
+    position: absolute;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.page-container .box .oauth-icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* Centered label */
+.page-container .box .oauth-text {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}

@@ -1,0 +1,525 @@
+/* =========================
+   Reset + Base
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    min-height: 100%;
+    background: radial-gradient(circle at top, #242424, #0a0a0a);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    /* continuous gradient on scroll */
+    background: radial-gradient(circle at top, #242424, #0a0a0a);
+    background-attachment: fixed;
+    color: #ffffff;
+}
+
+
+/*HEADER*/
+.site-header {
+    position: fixed;
+    top: 0;
+    z-index: 9999999;
+    width: 100%;
+    /* 3-column layout so the CENTER nav is truly centered */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-items: center;
+    padding: 0.75rem 2.2rem;
+    background: black;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: Arial, sans-serif;
+}
+
+/* keep left/right groups pinned to edges */
+.header-left { justify-self: start; }
+.header-actions { justify-self: end; }
+
+/* Centered navigation */
+.main-nav {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:28px;
+    /* do NOT flex-grow; grid handles centering */
+}
+
+
+    .main-nav a {
+    color:#dbeafe;
+    text-decoration:none;
+    transition:0.2s;
+    line-height:1.2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    white-space:nowrap;
+}
+
+        .main-nav a:hover {
+            color: white;
+        }
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* space between image and text */
+    font-size: 1.4rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.logo-img {
+    height: 42px; /* adjust if needed */
+    width: auto;
+    display: block;
+}
+
+.logo-text {
+    line-height: 1;
+    display: inline-block;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    white-space: nowrap;
+    color: white;
+    text-decoration: none;
+}
+
+    /* Force all link states to stay white */
+    .logo:link,
+    .logo:visited,
+    .logo:hover,
+    .logo:active {
+        color: white;
+        text-decoration: none;
+    }
+
+
+
+
+/* Base button style (used across pages) */
+.btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+/* Button */
+#header-appoint-button {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+
+.btn.primary {
+    background: #2563eb;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+    .btn.primary:hover {
+        background: #1d4ed8;
+    }
+
+
+.lang-switcher button {
+    background: transparent;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+    .lang-switcher button:hover {
+        background: #1e293b;
+        color: white;
+    }
+
+
+/* LEFT grouping */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* Login button style */
+.btn-login {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+    .btn-login:hover {
+        background: #1e293b;
+        color: white;
+    }
+
+
+
+/* Logged-in state (headerAuth.js adds .logged-in) */
+.account-link.logged-in {
+    font-weight: 600;
+}
+.page-content {
+    flex: 1;
+    padding-top: 80px; /* account for fixed header */
+}
+
+/* =========================
+   MOBILE HAMBURGER NAV
+========================= */
+.nav-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.nav-toggle:hover {
+    background: rgba(255,255,255,0.10);
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 9999998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.mobile-nav-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(86vw, 360px);
+    background: #000;
+    border-left: 1px solid rgba(255,255,255,0.10);
+    z-index: 9999999;
+    transform: translateX(105%);
+    transition: transform 0.22s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-nav-drawer .drawer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+/* Drawer brand: never show default link styles */
+.mobile-nav-drawer .drawer-top a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none !important;
+    color: #fff !important;
+}
+
+.mobile-nav-drawer .drawer-top a:hover {
+    text-decoration: none !important;
+    color: #fff !important;
+}
+
+.mobile-nav-drawer .drawer-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-decoration: none !important;
+    color: #fff !important;
+    display: inline-block;
+}
+
+
+.mobile-nav-drawer .drawer-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.mobile-nav-drawer .drawer-content {
+    padding: 10px 14px 18px;
+    overflow: auto;
+}
+
+.mobile-nav-drawer .drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0 14px;
+}
+
+.mobile-nav-drawer .drawer-links a {
+    display: block;
+    padding: 12px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #dbeafe;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.mobile-nav-drawer .drawer-links a:hover {
+    background: rgba(255,255,255,0.10);
+    color: #fff;
+}
+
+.mobile-nav-drawer .drawer-actions {
+    display: grid;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    margin-top: 6px;
+}
+
+.mobile-nav-drawer .drawer-actions .lang-switcher {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    padding-top: 8px;
+}
+
+body.mobile-nav-open .mobile-nav-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body.mobile-nav-open .mobile-nav-drawer {
+    transform: translateX(0);
+}
+
+@media (max-width: 820px) {
+    .site-header {
+        grid-template-columns: 1fr auto;
+        justify-items: stretch;
+        padding: 0.65rem 0.9rem;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    /* keep left group tight on mobile */
+    .header-left {
+        gap: 10px;
+    }
+
+
+    /* Hide the title on mobile (logo only) */
+    .logo-text { display: none; }
+
+    /* Keep "Make an Appointment" visible in the header on mobile */
+    #header-appoint-button {
+        display: inline-flex;
+        padding: 8px 10px;
+        font-size: 0.85rem;
+        border-radius: 12px;
+    }
+
+    .logo-img {
+        height: 34px;
+    }
+
+    .header-actions {
+        gap: 10px;
+    }
+
+    /* hide desktop lang switcher (it appears in the drawer) */
+    .header-actions .lang-switcher {
+        display: none;
+    }
+
+    /* keep login visible in the drawer only */
+    .header-actions .btn-login,
+    .header-actions .admin-tab {
+        display: none !important;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+    }
+
+    .page-content {
+        padding-top: 74px;
+    }
+
+    /* iOS / mobile perf: disable fixed attachment */
+    body {
+        background-attachment: scroll;
+    }
+}
+
+/* Drawer: account link at the very top */
+.mobile-nav-drawer .drawer-account-top {
+    display: grid;
+    gap: 10px;
+    padding: 10px 0 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    margin-bottom: 10px;
+}
+
+.mobile-nav-drawer .drawer-account-top a {
+    display: block;
+    padding: 12px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #dbeafe;
+    background: rgba(37, 99, 235, 0.18);
+    border: 1px solid rgba(37, 99, 235, 0.35);
+}
+
+.mobile-nav-drawer .drawer-account-top a:hover {
+    background: rgba(37, 99, 235, 0.26);
+    color: #fff;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+    background: radial-gradient(circle at top, #1f1f1f, #0a0a0a);
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.footer-cols {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+    .footer-cols h4 {
+        margin-bottom: 10px;
+        font-size: 1.05rem;
+    }
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    justify-content: flex-end;
+}
+
+    .social-icons img {
+        width: 28px;
+        height: 28px;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        cursor: pointer;
+    }
+
+        .social-icons img:hover {
+            transform: scale(1.15);
+            opacity: 0.8;
+        }
+
+.footer-bottom {
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    color: #94a3b8;
+    margin: 0; /* remove default <p> spacing */
+    padding: 15px 0 15px 0; /* top padding bigger than bottom */
+}
+
+
+
+/* Admin tab (shown only for admin email by headerAuth.js) */
+.admin-tab {
+    border-color: rgba(37, 99, 235, 0.55);
+}
+.admin-tab:hover {
+    background: rgba(37, 99, 235, 0.15);
+}
+
+
+/* Active navigation tab */
+.main-nav a.active{color:#3b82f6;font-weight:600;border-bottom:2px solid #3b82f6;padding-bottom:4px}
+.main-nav a:hover{color:#3b82f6}
+
+
+/* Active tab in mobile drawer */
+.mobile-nav-drawer .drawer-links a.active {
+    color: #3b82f6;
+    font-weight: 600;
+    border-color: rgba(59,130,246,0.55);
+    box-shadow: inset 0 -2px 0 #3b82f6;
+}
+
+.mobile-nav-drawer .drawer-links a.active:hover {
+    color: #60a5fa;
+}

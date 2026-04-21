@@ -1,0 +1,80 @@
+:root {
+    --primary: #2563eb;
+    --bg: #0b1120;
+    --card-bg: rgba(15, 23, 42, 0.6);
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --border: rgba(255,255,255,0.08);
+}
+
+/* GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    min-height: 100%;
+    background: radial-gradient(circle at top, #242424, #0a0a0a);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: #fff;
+}
+
+
+/* PAGE */
+.order-page {
+    flex: 1;
+    padding: 2.5rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* CARD */
+.order-card {
+    max-width: 720px;
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 2.2rem;
+    text-align: center;
+}
+
+.order-id {
+    color: var(--muted);
+    margin-bottom: 1.4rem;
+}
+
+/* DETAILS */
+.order-details {
+    display: flex;
+    gap: 1.8rem;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+    .order-details img {
+        width: 150px;
+        border-radius: 14px;
+    }
+
+.total {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .order-details {
+        flex-direction: column;
+        text-align: center;
+    }
+}
