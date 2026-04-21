@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>UBarbershop – Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{{base_path}}/css/header_footer.css" rel="stylesheet" />
+    <link href="{{base_path}}/css/login.css" rel="stylesheet" />
+</head>
+<body>
+
+    {% include "utils/header.html.twig" %}
+
+    <!-- Main -->
+    <div class="page-container">
+        <div class="box">
+            <h2 data-i18n="auth.login.title">Login</h2>
+
+            <form id="login-form" novalidate>
+
+                <label for="email" data-i18n="auth.email.label">Email</label>
+                <input
+                    id="email"
+                    type="email"
+                    required
+                    placeholder="Email"
+                    data-i18n-placeholder="auth.email.placeholder"
+                />
+
+                <label for="password" data-i18n="auth.password.label">Password</label>
+                <input
+                    id="password"
+                    type="password"
+                    required
+                    placeholder="Password"
+                    data-i18n-placeholder="auth.password.placeholder"
+                />
+
+                <button type="submit" class="btn-primary" data-i18n="auth.login.button">
+                    Login
+                </button>
+
+                <div class="auth-divider">
+                    <span data-i18n="auth.or">or</span>
+                </div>
+
+                <button type="button" id="google-login" class="oauth-pill">
+                    <span class="oauth-icon-wrap" aria-hidden="true">
+                        <img src="../public/images/google_inv.png" alt="" class="oauth-icon" />
+                    </span>
+                    <span class="oauth-text" data-i18n="auth.oauth.google">
+                        Continue with Google
+                    </span>
+                </button>
+
+                <button type="button" id="facebook-login" class="oauth-pill oauth-facebook">
+                    <span class="oauth-icon-wrap" aria-hidden="true">
+                        <img src="../public/images/facebook.png" alt="" class="oauth-icon" />
+                    </span>
+                    <span class="oauth-text" data-i18n="auth.oauth.facebook">
+                        Continue with Facebook
+                    </span>
+                </button>
+
+                <p class="login-link">
+                    <a href="#" id="forgot-password" data-i18n="auth.login.forgot">
+                        Forgot password?
+                    </a>
+                </p>
+
+                <p class="register-link">
+                    <span data-i18n="auth.login.noAccount">Don\'t have an account?</span>
+                    <a href="{{base_path}}/register" data-i18n="auth.login.registerLink">Register</a>
+                </p>
+
+                <p class="error" id="error"></p>
+
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    {% include 'utils/footer.html.twig' %}
+    
+    <!-- Scripts -->
+    <script src="../js/lang.js"></script>
+    <script src="../js/login.js" type="module"></script>
+    <script src="../js/headerAuth.js" type="module"></script>
+    <script src="../js/hamburgerMenu.js"></script>
+    <script src="../js/activeNav.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>UBarbershop – About</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="../public/css/about.css" rel="stylesheet" />
+    <link href="../public/css/header_footer.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    {% include "utils/header.html.twig" %}
+    
+    <!-- Main -->
+    <main class="about-page">
+
+        <h1 data-i18n="about.title">About This Business</h1>
+
+        <div class="about-card">
+
+            <h2 data-i18n="about.subtitle">
+                A Young Woman’s First Business Journey
+            </h2>
+
+            <p data-i18n="about.p1">
+                UBarbershop was created as the first business venture of a young woman
+                driven by passion, determination, and a desire to build something
+                meaningful. Opening this barbershop represents an important milestone
+                and the beginning of an exciting entrepreneurial journey.
+            </p>
+
+            <p data-i18n="about.p2">
+                The goal of UBarbershop is to provide a welcoming, professional space
+                where clients feel confident, comfortable, and valued. Every detail —
+                from the atmosphere to the services offered — has been carefully
+                considered to deliver quality and consistency, including the
+                complimentary refreshments offered to all clients during their visit.
+            </p>
+
+            <p data-i18n="about.p3">
+                This business is more than just a barbershop; it is a reflection of hard
+                work, perseverance, and the courage it takes to turn a vision into
+                reality. It stands as proof that with dedication and ambition, a first
+                business can become something truly special.
+            </p>
+
+            <p class="thanks" data-i18n="about.thanks">
+                Thank you for supporting a local business and being part of this journey!
+            </p>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    {% include 'utils/footer.html.twig' %}
+
+    <!-- Scripts -->
+    <script src="../js/headerAuth.js" type="module"></script>
+    <script src="../js/lang.js"></script>
+    <script src="../js/hamburgerMenu.js"></script>
+    <script src="../js/activeNav.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Register</title>
+
+    <link href="../public/css/login.css" rel="stylesheet" />
+    <link href="../public/css/header_footer.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    {% include "utils/header.html.twig" %}
+
+    <!-- Main -->
+    <div class="page-container">
+
+        <div class="box">
+
+            <h2 data-i18n="auth.register.title">Register</h2>
+
+            <form id="registerForm">
+
+                <label data-i18n="auth.name.label">Name</label>
+                <input
+                    id="regName"
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    data-i18n-placeholder="auth.name.placeholder"
+                />
+
+                <label data-i18n="auth.email.label">Email</label>
+                <input
+                    id="regEmail"
+                    type="email"
+                    required
+                    placeholder="Email"
+                    data-i18n-placeholder="auth.email.placeholder"
+                />
+
+                <label data-i18n="auth.password.label">Password</label>
+                <input
+                    id="regPassword"
+                    type="password"
+                    required
+                    placeholder="Password"
+                    data-i18n-placeholder="auth.password.placeholder"
+                />
+
+                <label data-i18n="auth.register.confirmLabel">Confirm Password</label>
+                <input
+                    id="regConfirmPassword"
+                    type="password"
+                    required
+                    placeholder="Confirm Password"
+                    data-i18n-placeholder="auth.register.confirmPlaceholder"
+                />
+
+                <button type="submit" data-i18n="auth.register.button">
+                    Register
+                </button>
+
+                <p class="login-link">
+                    <span data-i18n="auth.register.haveAccount">
+                        Already have an account?
+                    </span>
+                    <a href="{{base_path}}/login" data-i18n="auth.register.goLogin">
+                        Go to Login
+                    </a>
+                </p>
+
+                <p class="error" id="regError"></p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    {% include 'utils/footer.html.twig' %}
+
+    <!-- Scripts -->
+    <script src="../js/register.js" type="module"></script>
+    <script src="../js/lang.js"></script>
+    <script src="../js/headerAuth.js" type="module"></script>
+    <script src="../js/hamburgerMenu.js"></script>
+    <script src="../js/activeNav.js"></script>
+
+</body>
+</html>

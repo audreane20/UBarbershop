@@ -1,0 +1,63 @@
+<!-- Header -->
+    <header class="site-header">
+        <!-- LEFT SIDE -->
+        <div class="header-left">
+            <a class="logo" href="{{base_path}}">
+                <img src="../public/images/logo.png" alt="UBarbershop Logo" class="logo-img" />
+                <span class="logo-text">UBarbershop</span>
+            </a>
+
+            <a
+                href="{{base_path}}/appointment"
+                class="btn primary"
+                id="header-appoint-button"
+                data-i18n="appoint.submit"
+            >
+                Make an Appointment
+            </a>
+        </div>
+
+        <!-- CENTER -->
+        <nav class="main-nav">
+            <a href="{{base_path}}" data-i18n="nav.home">Home</a>
+            <a href="{{base_path}}/about" data-i18n="nav.about">About</a>
+            <a href="{{base_path}}/contact" data-i18n="nav.contact">Contact</a>
+        </nav>
+
+        <!-- RIGHT SIDE -->
+        <div class="header-actions">
+            <a href="{{base_path}}/login" class="btn-login account-link" id="account-link">
+                Login
+            </a>
+
+            <a
+                href="{{base_path}}/callendar"
+                class="btn-login admin-tab"
+                id="admin-tab"
+                data-i18n="nav.adminMode"
+                style="display:none;"
+            >
+                Admin Mode
+            </a>
+
+            <div class="lang-switcher">
+            </a>
+
+            <a
+                href="{{base_path}}/callendar"
+                class="btn-login admin-tab"
+                id="admin-tab"
+                data-i18n="nav.adminMode"
+                style="display:none;"
+            >
+                Admin Mode
+            </a>
+
+            <div class="lang-switcher">
+                <button type="button" data-lang="en">EN</button>
+                <button type="button" data-lang="fr">FR</button>
+            </div>
+        </div>
+
+    </header>
+</html>
