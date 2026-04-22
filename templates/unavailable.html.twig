@@ -10,14 +10,14 @@
   <body>
     <header class="site-header">
       <a class="logo logo-link" href="{{base_path}}" aria-label="UBarbershop Home">
-        <img src="../images/logo.png" class="logo-img" />
+        <img src="../public/images/logo.png" class="logo-img" />
         <span class="logo-text">UBarbershop</span>
       </a>
 
       <nav class="main-nav">
         <a href="{{base_path}}/callendar" data-i18n="nav.calendar">Appointments Calendar</a>
-        <a href="admin.html" data-i18n="nav.addEmployee">Add Employee</a>
-        <a href="{{base_path}}/unvailable" data-i18n="nav.unavailable">Unavailable Days</a>
+        <a href="{{base_path}}/admin" data-i18n="nav.addEmployee">Add Employee</a>
+        <a href="{{base_path}}/unavailable" data-i18n="nav.unavailable">Unavailable Days</a>
         <a href="{{base_path}}/services" data-i18n="nav.services">Services</a>
         <a href="{{base_path}}" data-i18n="nav.exitAdmin">Exit Admin Mode</a>
       </nav>
@@ -123,8 +123,8 @@
       </p>
     </footer>
 
-    <script src="../js/lang.js"></script>
-    <script type="module" src="../js/unavailable.js"></script>
+    <script src="../public/js/lang.js"></script>
+    <script type="module" src="../public/js/unavailable.js"></script>
 
     <!-- Gate admin pages behind login -->
     <script type="module">
@@ -138,7 +138,7 @@
       });
     </script>
 
-    <script src="../js/hamburgerMenu.js"></script>
-    <script src="../js/activeNav.js"></script>
+    <script src="../public/js/hamburgerMenu.js"></script>
+    <script src="../public/js/activeNav.js"></script>
   </body>
 </html>

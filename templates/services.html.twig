@@ -4,22 +4,22 @@
     <meta charset="UTF-8" />
     <title>UBarbershop – Admin Services</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../public/css/admin.css" />
   </head>
 
   <body>
     <header class="site-header">
-      <a class="logo logo-link" href="home.html" aria-label="UBarbershop Home">
-        <img src="../images/logo.png" class="logo-img" />
+      <a class="logo logo-link" href="{{base_path}}" aria-label="UBarbershop Home">
+        <img src="../public/images/logo.png" class="logo-img" />
         <span class="logo-text">UBarbershop</span>
       </a>
 
       <nav class="main-nav">
-        <a href="callendar.html" data-i18n="nav.calendar">Appointments Calendar</a>
-        <a href="admin.html" data-i18n="nav.addEmployee">Add Employee</a>
-        <a href="unavailable.html" data-i18n="nav.unavailable">Unavailable Days</a>
-        <a href="services.html" data-i18n="nav.services">Services</a>
-        <a href="home.html" data-i18n="nav.exitAdmin">Exit Admin Mode</a>
+        <a href="{{base_path}}/calendar" data-i18n="nav.calendar">Appointments Calendar</a>
+        <a href="{{base_path}}/admin" data-i18n="nav.addEmployee">Add Employee</a>
+        <a href="{{base_path}}/unavailable" data-i18n="nav.unavailable">Unavailable Days</a>
+        <a href="{{base_path}}/services" data-i18n="nav.services">Services</a>
+        <a href="{{base_path}}" data-i18n="nav.exitAdmin">Exit Admin Mode</a>
       </nav>
 
       <div class="header-actions">
@@ -146,12 +146,12 @@
       </p>
     </footer>
 
-    <script src="../js/lang.js"></script>
-    <script type="module" src="../js/servicesAdmin.js"></script>
+    <script src="../public/js/lang.js"></script>
+    <script type="module" src="../public/js/servicesAdmin.js"></script>
 
     <!-- Gate admin pages behind login -->
     <script type="module">
-      import { auth } from "../js/firebase.js";
+      import { auth } from "../public/js/firebase.js";
       import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
       onAuthStateChanged(auth, (user) => {
@@ -161,7 +161,7 @@
       });
     </script>
 
-    <script src="../js/hamburgerMenu.js"></script>
-    <script src="../js/activeNav.js"></script>
+    <script src="../public/js/hamburgerMenu.js"></script>
+    <script src="../public/js/activeNav.js"></script>
   </body>
 </html>

@@ -80,4 +80,28 @@ $app->get('/register', function (Request $request, Response $response) {
     return $view->render($response, 'register.html.twig');
 });
 
+$app->get('/admin', function (Request $request, Response $response) {
+    $view = Twig::fromRequest($request);
+
+    return $view->render($response, 'admin.html.twig');
+});
+
+$app->get('/profile', function (Request $request, Response $response) {
+    $view = Twig::fromRequest($request);
+
+    return $view->render($response, 'profile.html.twig');
+});
+
+$app->get('/services', function (Request $request, Response $response) {
+    $view = Twig::fromRequest($request);
+
+    return $view->render($response, 'services.html.twig');
+});
+
+$app->get('/unavailable', function (Request $request, Response $response) {
+    $view = Twig::fromRequest($request);
+
+    return $view->render($response, 'unavailable.html.twig');
+});
+
 $app->run();

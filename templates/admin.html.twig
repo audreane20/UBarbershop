@@ -4,30 +4,30 @@
     <meta charset="UTF-8" />
     <title>UBarbershop – Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../public/css/admin.css" />
   </head>
 
   <body>
     <header class="site-header">
       <a class="logo logo-link" href="home.html" aria-label="UBarbershop Home">
-        <img src="../images/logo.png" class="logo-img" />
+        <img src="../public/images/logo.png" class="logo-img" />
         <span class="logo-text">UBarbershop</span>
       </a>
 
       <nav class="main-nav">
-        <a href="callendar.html" data-i18n="nav.calendar">
+        <a href="{{base_path}}/calendar" data-i18n="nav.calendar">
           Appointments Calendar
         </a>
-        <a href="admin.html" data-i18n="nav.addEmployee">
+        <a href="{{base_path}}/admin" data-i18n="nav.addEmployee">
           Add Employee
         </a>
-        <a href="unavailable.html" data-i18n="nav.unavailable">
+        <a href="{{base_path}}/unavailable" data-i18n="nav.unavailable">
           Unavailable Days
         </a>
-        <a href="services.html" data-i18n="nav.services">
+        <a href="{{base_path}}/services" data-i18n="nav.services">
           Services
         </a>
-        <a href="home.html" data-i18n="nav.exitAdmin">
+        <a href="{{base_path}}" data-i18n="nav.exitAdmin">
           Exit Admin Mode
         </a>
       </nav>
@@ -151,10 +151,10 @@
     </footer>
 
     <!-- IMPORTANT: lang.js must load first -->
-    <script src="../js/lang.js"></script>
-    <script type="module" src="../js/admin.js"></script>
+    <script src="../public/js/lang.js"></script>
+    <script type="module" src="../public/js/admin.js"></script>
 
-    <script src="../js/hamburgerMenu.js"></script>
-    <script src="../js/activeNav.js"></script>
+    <script src="../public/js/hamburgerMenu.js"></script>
+    <script src="../public/js/activeNav.js"></script>
   </body>
 </html>
