@@ -22,7 +22,7 @@
             </a>
 
             <a
-                href="appointment.html"
+                href="{{base_path}}/appointment"
                 class="btn primary"
                 id="header-appoint-button"
                 data-i18n="nav.appointBtn"
@@ -40,12 +40,12 @@
 
         <!-- RIGHT SIDE -->
         <div class="header-actions">
-            <a href="login.html" class="btn-login account-link" id="account-link">
+            <a href="{{base_path}}/login" class="btn-login account-link" id="account-link">
                 Login
             </a>
 
             <a
-                href="callendar.html"
+                href="{{base_path}}/calendar"
                 class="btn-login admin-tab"
                 id="admin-tab"
                 data-i18n="nav.adminMode"
@@ -120,11 +120,11 @@
     {% include 'utils/footer.html.twig' %}
 
     <!-- Scripts -->
-    <script src="../js/contact.js" type="module"></script>
-    <script src="../js/headerAuth.js" type="module"></script>
-    <script src="../js/lang.js"></script>
-    <script src="../js/hamburgerMenu.js"></script>
-    <script src="../js/activeNav.js"></script>
+    <script src="../public/js/contact.js" type="module"></script>
+    <script src="../public/js/headerAuth.js" type="module"></script>
+    <script src="../public/js/lang.js"></script>
+    <script src="../public/js/hamburgerMenu.js"></script>
+    <script src="../public/js/activeNav.js"></script>
 
 	<script>
 		function openMaps(event) {

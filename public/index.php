@@ -68,7 +68,7 @@ $app->get('/appointment', function (Request $request, Response $response) {
     return $view->render($response, 'appointment.html.twig');
 });
 
-$app->get('/callendar', function (Request $request, Response $response) {
+$app->get('/calendar', function (Request $request, Response $response) {
     $view = Twig::fromRequest($request);
 
     return $view->render($response, 'callendar.html.twig');
