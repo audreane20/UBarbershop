@@ -1,3 +1,3 @@
 # UBarbershop
 
-When you clon it please write '../composer install ' in cmd
+When you clone it please write '../composer install ' in cmd
