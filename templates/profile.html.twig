@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app_lang ?? 'en' }}">
 <head>
     <meta charset="utf-8" />
     <title>Profile</title>
@@ -25,17 +25,16 @@
                 href="{{base_path}}/appointment"
                 class="btn primary"
                 id="header-appoint-button"
-                data-i18n="appoint.submit"
             >
-                Make an Appointment
+                {{ trans('appoint.submit') }}
             </a>
         </div>
 
         <!-- CENTER -->
         <nav class="main-nav">
-            <a href="{{base_path}}" data-i18n="nav.home">Home</a>
-            <a href="{{base_path}}/about" data-i18n="nav.about">About</a>
-            <a href="{{base_path}}/contact" data-i18n="nav.contact">Contact</a>
+            <a href="{{base_path}}">{{ trans('nav.home') }}</a>
+            <a href="{{base_path}}/about">{{ trans('nav.about') }}</a>
+            <a href="{{base_path}}/contact">{{ trans('nav.contact') }}</a>
         </nav>
 
         <!-- RIGHT SIDE -->
@@ -48,10 +47,9 @@
                 href="{{base_path}}/calendar"
                 class="btn-login admin-tab"
                 id="admin-tab"
-                data-i18n="nav.adminMode"
                 style="display:none;"
             >
-                Admin Mode
+                {{ trans('nav.adminMode') }}
             </a>
 
             <div class="lang-switcher">
@@ -67,22 +65,21 @@
 
         <div class="box">
 
-            <h2 data-i18n="auth.profile.title">My Profile</h2>
+            <h2>{{ trans('auth.profile.title') }}</h2>
 
             <form id="profile-form">
 
-                <label data-i18n="auth.name.label">Name</label>
+                <label>{{ trans('auth.name.label') }}</label>
                 <input id="profile-name" type="text" />
 
-                <label data-i18n="auth.email.label">Email</label>
+                <label>{{ trans('auth.email.label') }}</label>
                 <input id="profile-email" type="email" disabled />
 
                 <button
                     type="submit"
                     class="btn primary"
-                    data-i18n="auth.profile.save"
                 >
-                    Save Changes
+                    {{ trans('auth.profile.save') }}
                 </button>
 
                 <p id="profile-msg"></p>
@@ -92,9 +89,8 @@
             <button
                 id="logout-btn"
                 class="btn logout-btn"
-                data-i18n="auth.profile.logout"
             >
-                Logout
+                {{ trans('auth.profile.logout') }}
             </button>
 
         </div>

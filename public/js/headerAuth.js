@@ -47,13 +47,15 @@ document.addEventListener("DOMContentLoaded", () => {
           ? user.displayName.trim()
           : user.email;
 
+      const basePath = window.basePath || '/UBarbershop/public';
       link.textContent = name;
-      link.href = "profile.html";
+      link.href = basePath + '/profile';
       link.classList.add("logged-in");
       link.title = TT("auth.profileLinkTitle", "Go to your profile");
     } else {
+      const basePath = window.basePath || '/UBarbershop/public';
       link.textContent = TT("auth.loginLink", "Login");
-      link.href = "login.html";
+      link.href = basePath + '/login';
       link.classList.remove("logged-in");
       link.title = TT("auth.loginLink", "Login");
 

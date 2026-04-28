@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app_lang ?? 'en' }}">
   <head>
     <meta charset="UTF-8" />
     <title>UBarbershop – Admin Services</title>
@@ -15,11 +15,11 @@
       </a>
 
       <nav class="main-nav">
-        <a href="{{base_path}}/calendar" data-i18n="nav.calendar">Appointments Calendar</a>
-        <a href="{{base_path}}/admin" data-i18n="nav.addEmployee">Add Employee</a>
-        <a href="{{base_path}}/unavailable" data-i18n="nav.unavailable">Unavailable Days</a>
-        <a href="{{base_path}}/services" data-i18n="nav.services">Services</a>
-        <a href="{{base_path}}" data-i18n="nav.exitAdmin">Exit Admin Mode</a>
+        <a href="{{base_path}}/calendar">{{ trans('nav.calendar') }}</a>
+        <a href="{{base_path}}/admin">{{ trans('nav.addEmployee') }}</a>
+        <a href="{{base_path}}/unavailable">{{ trans('nav.unavailable') }}</a>
+        <a href="{{base_path}}/services">{{ trans('nav.services') }}</a>
+        <a href="{{base_path}}">{{ trans('nav.exitAdmin') }}</a>
       </nav>
 
       <div class="header-actions">
@@ -31,12 +31,10 @@
     </header>
 
     <main class="page-content admin-page">
-      <h1 data-i18n="servicesAdmin.title">Services</h1>
+      <h1>{{ trans('servicesAdmin.title') }}</h1>
 
       <div class="admin-card">
-        <p class="admin-subtitle" data-i18n="servicesAdmin.subtitle">
-          Add, edit, or delete services. These services will appear on the booking page.
-        </p>
+        <p class="admin-subtitle">{{ trans('servicesAdmin.subtitle') }}</p>
 
         <div id="svc-msg" aria-live="polite"></div>
         <div id="svc-error" aria-live="polite"></div>
@@ -45,16 +43,16 @@
           <!-- Service ID is generated automatically. Hidden field is used for edit mode. -->
           <input id="svc-id" type="hidden" />
 
-          <label for="svc-en" data-i18n="servicesAdmin.nameEn">Name (EN)</label>
+          <label for="svc-en">{{ trans('servicesAdmin.nameEn') }}</label>
           <input id="svc-en" type="text" required />
 
-          <label for="svc-fr" data-i18n="servicesAdmin.nameFr">Name (FR)</label>
+          <label for="svc-fr">{{ trans('servicesAdmin.nameFr') }}</label>
           <input id="svc-fr" type="text" required />
 
           <div class="field-grid two">
             <div class="field">
-              <label for="svc-duration" data-i18n="servicesAdmin.duration">
-                Duration (minutes)
+              <label for="svc-duration">
+                {{ trans('servicesAdmin.duration') }}
               </label>
               <div class="input-wrap">
                 <input id="svc-duration" type="number" min="5" step="5" required />
@@ -63,7 +61,7 @@
             </div>
 
             <div class="field">
-              <label for="svc-price" data-i18n="servicesAdmin.price">Price ($)</label>
+              <label for="svc-price">{{ trans('servicesAdmin.price') }}</label>
               <div class="input-wrap">
                 <span class="prefix">$</span>
                 <input
@@ -80,8 +78,8 @@
 
           <div class="field-grid two" style="margin-top: 10px;">
             <div class="field">
-              <label for="svc-order" data-i18n="servicesAdmin.order">
-                Sort order
+              <label for="svc-order">
+                {{ trans('servicesAdmin.order') }}
               </label>
               <div class="input-wrap">
                 <span class="prefix">#</span>
@@ -99,7 +97,7 @@
             <div class="field" style="display: flex; align-items: flex-end;">
               <label class="check-row">
                 <input id="svc-active" type="checkbox" checked />
-                <span data-i18n="servicesAdmin.active">Active</span>
+                <span>{{ trans('servicesAdmin.active') }}</span>
               </label>
             </div>
           </div>
@@ -108,18 +106,16 @@
             <button
               class="btn primary"
               type="submit"
-              data-i18n="servicesAdmin.add"
             >
-              Save service
+              {{ trans('servicesAdmin.add') }}
             </button>
 
             <button
               class="btn ghost"
               type="button"
               id="svc-clear"
-              data-i18n="servicesAdmin.clear"
             >
-              Clear
+              {{ trans('servicesAdmin.clear') }}
             </button>
           </div>
         </form>
@@ -127,9 +123,8 @@
         <div class="employee-list-wrap" style="margin-top: 1.25rem;">
           <h2
             class="employee-list-title"
-            data-i18n="servicesAdmin.listTitle"
           >
-            Current services
+            {{ trans('servicesAdmin.listTitle') }}
           </h2>
           <div id="svc-list"></div>
         </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app_lang ?? 'en' }}">
 <head>
     <meta charset="utf-8" />
     <title>UBarbershop – Login</title>
@@ -14,11 +14,11 @@
     <!-- Main -->
     <div class="page-container">
         <div class="box">
-            <h2 data-i18n="auth.login.title">Login</h2>
+            <h2>{{ trans('auth.login.title') }}</h2>
 
             <form id="login-form" novalidate>
 
-                <label for="email" data-i18n="auth.email.label">Email</label>
+                <label for="email">{{ trans('auth.email.label') }}</label>
                 <input
                     id="email"
                     type="email"
@@ -27,7 +27,7 @@
                     data-i18n-placeholder="auth.email.placeholder"
                 />
 
-                <label for="password" data-i18n="auth.password.label">Password</label>
+                <label for="password">{{ trans('auth.password.label') }}</label>
                 <input
                     id="password"
                     type="password"
@@ -36,20 +36,20 @@
                     data-i18n-placeholder="auth.password.placeholder"
                 />
 
-                <button type="submit" class="btn-primary" data-i18n="auth.login.button">
-                    Login
+                <button type="submit" class="btn-primary">
+                    {{ trans('auth.login.button') }}
                 </button>
 
                 <div class="auth-divider">
-                    <span data-i18n="auth.or">or</span>
+                    <span>{{ trans('auth.or') }}</span>
                 </div>
 
                 <button type="button" id="google-login" class="oauth-pill">
                     <span class="oauth-icon-wrap" aria-hidden="true">
                         <img src="../public/images/google_inv.png" alt="" class="oauth-icon" />
                     </span>
-                    <span class="oauth-text" data-i18n="auth.oauth.google">
-                        Continue with Google
+                    <span class="oauth-text">
+                        {{ trans('auth.oauth.google') }}
                     </span>
                 </button>
 
@@ -57,20 +57,20 @@
                     <span class="oauth-icon-wrap" aria-hidden="true">
                         <img src="../public/images/facebook.png" alt="" class="oauth-icon" />
                     </span>
-                    <span class="oauth-text" data-i18n="auth.oauth.facebook">
-                        Continue with Facebook
+                    <span class="oauth-text">
+                        {{ trans('auth.oauth.facebook') }}
                     </span>
                 </button>
 
                 <p class="login-link">
-                    <a href="#" id="forgot-password" data-i18n="auth.login.forgot">
-                        Forgot password?
+                    <a href="#" id="forgot-password">
+                        {{ trans('auth.login.forgot') }}
                     </a>
                 </p>
 
                 <p class="register-link">
-                    <span data-i18n="auth.login.noAccount">Don\'t have an account?</span>
-                    <a href="{{base_path}}/register" data-i18n="auth.login.registerLink">Register</a>
+                    <span>{{ trans('auth.login.noAccount') }}</span>
+                    <a href="{{base_path}}/register">{{ trans('auth.login.registerLink') }}</a>
                 </p>
 
                 <p class="error" id="error"></p>

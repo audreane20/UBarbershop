@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app_lang ?? 'en' }}">
   <head>
     <meta charset="UTF-8" />
     <title>UBarbershop – Admin Calendar</title>
@@ -17,21 +17,11 @@
       </a>
 
       <nav class="main-nav">
-        <a href="{{base_path}}/callendar" data-i18n="nav.calendar">
-          Appointments Calendar
-        </a>
-        <a href="{{base_path}}/admin" data-i18n="nav.addEmployee">
-          Add Employee
-        </a>
-        <a href="{{base_path}}/unavailable" data-i18n="nav.unavailable">
-          Unavailable Days
-        </a>
-        <a href="{{base_path}}/services" data-i18n="nav.services">
-          Services
-        </a>
-        <a href="{{base_path}}" data-i18n="nav.exitAdmin">
-          Exit Admin Mode
-        </a>
+        <a href="{{base_path}}/callendar">{{ trans('nav.calendar') }}</a>
+        <a href="{{base_path}}/admin">{{ trans('nav.addEmployee') }}</a>
+        <a href="{{base_path}}/unavailable">{{ trans('nav.unavailable') }}</a>
+        <a href="{{base_path}}/services">{{ trans('nav.services') }}</a>
+        <a href="{{base_path}}">{{ trans('nav.exitAdmin') }}</a>
       </nav>
 
       <div class="header-actions">
@@ -43,8 +33,8 @@
     </header>
 
     <main class="page-content admin-page">
-      <h1 data-i18n="Past appointments">
-        Admin – Appointments
+      <h1>
+        {{ trans('Past appointments') }}
       </h1>
 
       <div class="admin-card calendar-card">
@@ -92,9 +82,7 @@
               />
 
               <select id="dresser-filter">
-                <option value="" data-i18n="calendar.allHairdressers">
-                  All hairdressers
-                </option>
+                <option value="">{{ trans('calendar.allHairdressers') }}</option>
               </select>
             </div>
 
@@ -131,9 +119,8 @@
       >
         <h2
           id="cancel-confirm-title"
-          data-i18n="confirm.deleteAppointment"
         >
-          Are you sure?
+          {{ trans('confirm.deleteAppointment') }}
         </h2>
 
         <div class="confirm-actions">
@@ -141,18 +128,16 @@
             class="btn primary"
             id="cancel-confirm-yes"
             type="button"
-            data-i18n="confirm.confirmAction"
           >
-            Yes, cancel appointment
+            {{ trans('confirm.confirmAction') }}
           </button>
 
           <button
             class="btn ghost"
             id="cancel-confirm-no"
             type="button"
-            data-i18n="confirm.keepAction"
           >
-            Keep appointment
+            {{ trans('confirm.keepAction') }}
           </button>
         </div>
       </div>

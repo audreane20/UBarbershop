@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app_lang ?? 'en' }}">
   <head>
     <meta charset="UTF-8" />
     <title>UBarbershop – Admin</title>
@@ -15,21 +15,11 @@
       </a>
 
       <nav class="main-nav">
-        <a href="{{base_path}}/calendar" data-i18n="nav.calendar">
-          Appointments Calendar
-        </a>
-        <a href="{{base_path}}/admin" data-i18n="nav.addEmployee">
-          Add Employee
-        </a>
-        <a href="{{base_path}}/unavailable" data-i18n="nav.unavailable">
-          Unavailable Days
-        </a>
-        <a href="{{base_path}}/services" data-i18n="nav.services">
-          Services
-        </a>
-        <a href="{{base_path}}" data-i18n="nav.exitAdmin">
-          Exit Admin Mode
-        </a>
+        <a href="{{base_path}}/calendar">{{ trans('nav.calendar') }}</a>
+        <a href="{{base_path}}/admin">{{ trans('nav.addEmployee') }}</a>
+        <a href="{{base_path}}/unavailable">{{ trans('nav.unavailable') }}</a>
+        <a href="{{base_path}}/services">{{ trans('nav.services') }}</a>
+        <a href="{{base_path}}">{{ trans('nav.exitAdmin') }}</a>
       </nav>
 
       <div class="header-actions">
@@ -41,18 +31,16 @@
     </header>
 
     <main class="page-content admin-page">
-      <h1 data-i18n="admin.title">Admin</h1>
+      <h1>{{ trans('admin.title') }}</h1>
 
       <div class="admin-card">
-        <p class="admin-subtitle" data-i18n="admin.subtitle">
-          Add hairdressers and set their working days + hours.
-        </p>
+        <p class="admin-subtitle">{{ trans('admin.subtitle') }}</p>
 
         <div id="admin-msg" aria-live="polite"></div>
         <div id="admin-error" aria-live="polite"></div>
 
         <form id="employee-form" novalidate>
-          <label for="emp-name" data-i18n="admin.name">Name</label>
+          <label for="emp-name">{{ trans('admin.name') }}</label>
           <input
             id="emp-name"
             type="text"
@@ -60,16 +48,15 @@
             required
           />
 
-          <label data-i18n="admin.workSchedule">Work schedule</label>
+          <label>{{ trans('admin.workSchedule') }}</label>
           <div class="week-grid" id="week-grid"></div>
 
           <div class="admin-actions">
             <button
               class="btn primary"
               type="submit"
-              data-i18n="admin.addEmployee"
             >
-              Add employee
+              {{ trans('admin.addEmployee') }}
             </button>
           </div>
         </form>
@@ -77,9 +64,8 @@
         <div class="employee-list-wrap">
           <h2
             class="employee-list-title"
-            data-i18n="admin.currentEmployees"
           >
-            Current employees
+            {{ trans('admin.currentEmployees') }}
           </h2>
           <div id="employee-list"></div>
         </div>
@@ -97,8 +83,8 @@
         aria-labelledby="edit-title"
       >
         <div class="modal-header">
-          <h2 id="edit-title" data-i18n="admin.editTitle">
-            Edit stylist
+          <h2 id="edit-title">
+            {{ trans('admin.editTitle') }}
           </h2>
           <button
             type="button"
@@ -111,10 +97,10 @@
         </div>
 
         <form id="edit-form" class="modal-body" novalidate>
-          <label for="edit-name" data-i18n="admin.name">Name</label>
+          <label for="edit-name">{{ trans('admin.name') }}</label>
           <input id="edit-name" type="text" required />
 
-          <label data-i18n="admin.workSchedule">Work schedule</label>
+          <label>{{ trans('admin.workSchedule') }}</label>
           <div class="week-grid" id="edit-week-grid"></div>
 
           <div class="modal-actions">
@@ -122,17 +108,15 @@
               type="button"
               class="btn ghost"
               id="edit-cancel"
-              data-i18n="admin.cancel"
             >
-              Cancel
+              {{ trans('admin.cancel') }}
             </button>
 
             <button
               type="submit"
               class="btn primary"
-              data-i18n="admin.saveChanges"
             >
-              Save changes
+              {{ trans('admin.saveChanges') }}
             </button>
           </div>
         </form>

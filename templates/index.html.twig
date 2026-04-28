@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app_lang ?? 'en' }}">
 <head>
     <meta charset="utf-8" />
     <title>UBarbershop – Home</title>
@@ -24,33 +24,31 @@
         >
             <div class="home-hero-inner">
 
-                <p class="home-pill" data-i18n="home.hero.pill">
-                    Fresh cuts • Clean fades • Beard grooming
+                <p class="home-pill">
+                    {{ trans('home.hero.pill') }}
                 </p>
 
-                <h1 class="home-title" data-i18n="home.hero.title">
-                    Look sharp. Feel confident.
+                <h1 class="home-title">
+                    {{ trans('home.hero.title') }}
                 </h1>
 
-                <p class="home-sub" data-i18n="home.hero.sub">
-                    Book your appointment in seconds — professional barbers, clean shop, great results.
+                <p class="home-sub">
+                    {{ trans('home.hero.sub') }}
                 </p>
 
                 <div class="home-actions">
                     <a
                         href="{{base_path}}/appointment"
                         class="home-btn primary"
-                        data-i18n="home.hero.book"
                     >
-                        Book Appointment
+                        {{ trans('home.hero.book') }}
                     </a>
 
                     <a
                         href="#home-gallery"
                         class="home-btn ghost"
-                        data-i18n="home.hero.gallery"
                     >
-                        View Gallery
+                        {{ trans('home.hero.gallery') }}
                     </a>
                 </div>
 
@@ -59,24 +57,24 @@
                     <article class="home-mini">
                         <img src="../public/images/salon/bookingNotification.png" alt="Booking notifications" />
                         <div>
-                            <h3 data-i18n="home.addons.online.title">Online Booking</h3>
-                            <p data-i18n="home.addons.online.desc">Fast scheduling + reminders.</p>
+                            <h3>{{ trans('home.addons.online.title') }}</h3>
+                            <p>{{ trans('home.addons.online.desc') }}</p>
                         </div>
                     </article>
 
                     <article class="home-mini">
                         <img src="../public/images/salon/freeSnack.png" alt="Free snacks" />
                         <div>
-                            <h3 data-i18n="home.addons.snacks.title">Free Snacks</h3>
-                            <p data-i18n="home.addons.snacks.desc">Relax while you wait.</p>
+                            <h3>{{ trans('home.addons.snacks.title') }}</h3>
+                            <p>{{ trans('home.addons.snacks.desc') }}</p>
                         </div>
                     </article>
 
                     <article class="home-mini">
                         <img src="../public/images/salon/products.png" alt="Products" />
                         <div>
-                            <h3 data-i18n="home.addons.products.title">Premium Products</h3>
-                            <p data-i18n="home.addons.products.desc">Hair & beard care available.</p>
+                            <h3>{{ trans('home.addons.products.title') }}</h3>
+                            <p>{{ trans('home.addons.products.desc') }}</p>
                         </div>
                     </article>
 
@@ -89,10 +87,8 @@
         <section class="home-section" id="home-services">
 
             <div class="home-section-head">
-                <h2 data-i18n="home.services.title">Services</h2>
-                <p data-i18n="Services">
-                    Pick your service — we'll handle the rest.
-                </p>
+                <h2>{{ trans('home.services.title') }}</h2>
+                <p>{{ trans('Services') }}</p>
             </div>
 
             <div class="home-service-grid">
@@ -100,32 +96,32 @@
                 <a class="home-service-card" href="appointment.html?service=haircut">
                     <img src="../public/images/salon/haircut.png" alt="Haircut" />
                     <div class="home-service-body">
-                        <h3 data-i18n="home.services.haircut.title">Haircut</h3>
-                        <p data-i18n="home.services.haircut.desc">Clean cut, sharp finish.</p>
+                        <h3>{{ trans('home.services.haircut.title') }}</h3>
+                        <p>{{ trans('home.services.haircut.desc') }}</p>
                     </div>
                 </a>
 
                 <a class="home-service-card" href="appointment.html?service=hair_beard">
                     <img src="../public/images/salon/haircut2.png" alt="Fade haircut" />
                     <div class="home-service-body">
-                        <h3 data-i18n="home.services.fade.title">Haircut & Beard Trim</h3>
-                        <p data-i18n="home.services.fade.desc">Double your style.</p>
+                        <h3>{{ trans('home.services.fade.title') }}</h3>
+                        <p>{{ trans('home.services.fade.desc') }}</p>
                     </div>
                 </a>
 
                 <a class="home-service-card" href="appointment.html?service=beard">
                     <img src="../public/images/salon/haircut3.png" alt="Beard grooming" />
                     <div class="home-service-body">
-                        <h3 data-i18n="home.services.beard.title">Beard Groom</h3>
-                        <p data-i18n="home.services.beard.desc">Trim + lineup for a clean look.</p>
+                        <h3>{{ trans('home.services.beard.title') }}</h3>
+                        <p>{{ trans('home.services.beard.desc') }}</p>
                     </div>
                 </a>
 
                 <a class="home-service-card" href="appointment.html?service=kids">
                     <img src="../public/images/salon/kidsCut.png" alt="Kids cut" />
                     <div class="home-service-body">
-                        <h3 data-i18n="home.services.kids.title">Kids Cut</h3>
-                        <p data-i18n="home.services.kids.desc">Quick, friendly, and fresh.</p>
+                        <h3>{{ trans('home.services.kids.title') }}</h3>
+                        <p>{{ trans('home.services.kids.desc') }}</p>
                     </div>
                 </a>
 
@@ -141,24 +137,24 @@
                 <div class="home-vibe-card">
                     <img src="../public/images/salon/salonChair.png" alt="Salon chair" />
                     <div>
-                        <h3 data-i18n="home.vibe.clean.title">Comfortable & clean</h3>
-                        <p data-i18n="home.vibe.clean.desc">Modern setup with a great vibe.</p>
+                        <h3>{{ trans('home.vibe.clean.title') }}</h3>
+                        <p>{{ trans('home.vibe.clean.desc') }}</p>
                     </div>
                 </div>
 
                 <div class="home-vibe-card">
                     <img src="../public/images/salon/esthetic1.png" alt="Detail work" />
                     <div>
-                        <h3 data-i18n="home.vibe.detail.title">Detail-focused</h3>
-                        <p data-i18n="home.vibe.detail.desc">Edges, blends, and lines done right.</p>
+                        <h3>{{ trans('home.vibe.detail.title') }}</h3>
+                        <p>{{ trans('home.vibe.detail.desc') }}</p>
                     </div>
                 </div>
 
                 <div class="home-vibe-card">
                     <img src="../public/images/salon/esthetic2.png" alt="Precision" />
                     <div>
-                        <h3 data-i18n="home.vibe.precision.title">Precision every time</h3>
-                        <p data-i18n="home.vibe.precision.desc">Consistency you can trust.</p>
+                        <h3>{{ trans('home.vibe.precision.title') }}</h3>
+                        <p>{{ trans('home.vibe.precision.desc') }}</p>
                     </div>
                 </div>
 
@@ -170,10 +166,8 @@
         <section class="home-section" id="home-gallery">
 
             <div class="home-section-head">
-                <h2 data-i18n="home.gallery.title">Gallery</h2>
-                <p data-i18n="home.gallery.subtitle">
-                    Recent cuts & shop atmosphere.
-                </p>
+                <h2>{{ trans('home.gallery.title') }}</h2>
+                <p>{{ trans('home.gallery.subtitle') }}</p>
             </div>
 
             <div class="home-gallery-grid">
@@ -189,9 +183,8 @@
                 <a
                     href="{{base_path}}/appointment"
                     class="home-btn primary"
-                    data-i18n="home.gallery.cta"
                 >
-                    Book Your Spot
+                    {{ trans('home.gallery.cta') }}
                 </a>
             </div>
 

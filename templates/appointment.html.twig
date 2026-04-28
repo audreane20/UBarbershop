@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app_lang ?? 'en' }}">
 <head>
     <meta charset="utf-8" />
     <title>UBarbershop – Appointment</title>
@@ -22,39 +22,34 @@
             aria-modal="true"
             aria-labelledby="login-required-title"
         >
-            <h2 id="login-required-title" data-i18n="appoint.loginRequiredTitle">
-                Login required
+            <h2 id="login-required-title">
+                {{ trans('appoint.loginRequiredTitle') }}
             </h2>
 
-            <p data-i18n="appoint.loginRequiredMsg">
-                Please log in to book an appointment.
-            </p>
+            <p>{{ trans('appoint.loginRequiredMsg') }}</p>
 
             <div class="login-required-actions">
                 <a
                     href="{{base_path}}/login"
                     class="btn primary"
                     id="login-required-login"
-                    data-i18n="appoint.loginRequiredLogin"
                 >
-                    Login
+                    {{ trans('appoint.loginRequiredLogin') }}
                 </a>
 
                 <a
                     href="{{base_path}}/register"
                     class="btn ghost"
                     id="login-required-register"
-                    data-i18n="appoint.loginRequiredRegister"
                 >
-                    Register
+                    {{ trans('appoint.loginRequiredRegister') }}
                 </a>
 
                 <a
                     href="{{base_path}}"
                     class="btn ghost"
-                    data-i18n="appoint.loginRequiredBack"
                 >
-                    Back to Home
+                    {{ trans('appoint.loginRequiredBack') }}
                 </a>
             </div>
         </div>
@@ -68,8 +63,8 @@
             aria-modal="true"
             aria-labelledby="cancel-confirm-title"
         >
-            <h2 id="cancel-confirm-title" data-i18n="confirm.deleteAppointment">
-                Are you sure?
+            <h2 id="cancel-confirm-title">
+                {{ trans('confirm.deleteAppointment') }}
             </h2>
 
             <div class="confirm-actions">
@@ -77,18 +72,16 @@
                     type="button"
                     class="btn primary"
                     id="cancel-confirm-yes"
-                    data-i18n="confirm.confirmAction"
                 >
-                    Yes, cancel appointment
+                    {{ trans('confirm.confirmAction') }}
                 </button>
 
                 <button
                     type="button"
                     class="btn ghost"
                     id="cancel-confirm-no"
-                    data-i18n="confirm.keepAction"
                 >
-                    Keep appointment
+                    {{ trans('confirm.keepAction') }}
                 </button>
             </div>
         </div>
@@ -97,13 +90,11 @@
     <!-- Main -->
     <main class="page-content appointment-page">
 
-        <h1 data-i18n="appoint.title">Schedule an Appointment</h1>
+        <h1>{{ trans('appoint.title') }}</h1>
 
         <div class="appoint-card">
 
-            <p class="appoint-subtitle" data-i18n="appoint.subtitle">
-                Choose a service and time. We’ll confirm your appointment.
-            </p>
+            <p class="appoint-subtitle">{{ trans('appoint.subtitle') }}</p>
 
             <div id="appoint-error" class="form-error" aria-live="polite"></div>
             <div id="appoint-success" class="form-success" aria-live="polite"></div>
@@ -111,25 +102,21 @@
             <form id="appoint-form" class="appoint-form" novalidate>
 
                 <!-- Service -->
-                <label for="service" data-i18n="appoint.serviceLabel">Service</label>
+                <label for="service">{{ trans('appoint.serviceLabel') }}</label>
                 <select id="service" required>
-                    <option value="" data-i18n="appoint.servicePlaceholder">
-                        Select a service
-                    </option>
+                    <option value="">{{ trans('appoint.servicePlaceholder') }}</option>
                 </select>
 
                 <!-- Hairdresser -->
-                <label data-i18n="appoint.dresserLabel">Hairdresser</label>
+                <label>{{ trans('appoint.dresserLabel') }}</label>
                 <div id="dresser-box" class="dresser-box">
                     <!-- JS injects checkboxes -->
                 </div>
 
-                <small class="hint" data-i18n="appoint.dresserHint">
-                    Any available" selects all hairdressers.
-                </small>
+                <small class="hint">{{ trans('appoint.dresserHint') }}</small>
 
                 <!-- Date -->
-                <label data-i18n="appoint.dateLabel">Date</label>
+                <label>{{ trans('appoint.dateLabel') }}</label>
                 <input id="date" type="hidden" required />
 
                 <div
@@ -141,12 +128,10 @@
                 <!-- Time -->
                 <div class="row">
                     <div class="col">
-                        <label for="time" data-i18n="appoint.timeLabel">Time</label>
+                        <label for="time">{{ trans('appoint.timeLabel') }}</label>
 
                         <select id="time" required>
-                            <option value="" data-i18n="appoint.timePlaceholder">
-                                Select a time
-                            </option>
+                            <option value="">{{ trans('appoint.timePlaceholder') }}</option>
                         </select>
 
                         <small id="time-hint" class="hint"></small>
@@ -154,62 +139,53 @@
                 </div>
 
                 <!-- Name -->
-                <label for="name" data-i18n="appoint.nameLabel">Full Name</label>
+                <label for="name">{{ trans('appoint.nameLabel') }}</label>
                 <input
                     id="name"
                     type="text"
                     required
-                    placeholder="Your name"
-                    data-i18n-placeholder="appoint.namePlaceholder"
+                    placeholder="{{ trans('appoint.namePlaceholder') }}"
                 />
 
                 <!-- Email + Phone -->
                 <div class="row">
 
                     <div class="col">
-                        <label for="email" data-i18n="appoint.emailLabel">Email</label>
+                        <label for="email">{{ trans('appoint.emailLabel') }}</label>
                         <input
                             id="email"
                             type="email"
                             required
-                            placeholder="you@example.com"
-                            data-i18n-placeholder="appoint.emailPlaceholder"
+                            placeholder="{{ trans('appoint.emailPlaceholder') }}"
                         />
                     </div>
 
                     <div class="col">
-                        <label for="phone" data-i18n="appoint.phoneLabel">
-                            Phone (optional)
-                        </label>
+                        <label>{{ trans('appoint.phoneLabel') }}</label>
                         <input
                             id="phone"
                             type="tel"
-                            placeholder="(450) 000-0000"
-                            data-i18n-placeholder="appoint.phonePlaceholder"
+                            placeholder="{{ trans('appoint.phonePlaceholder') }}"
                         />
                     </div>
 
                 </div>
 
                 <!-- Notes -->
-                <label for="notes" data-i18n="appoint.notesLabel">
-                    Notes (optional)
-                </label>
+                <label for="notes">{{ trans('appoint.notesLabel') }}</label>
 
                 <textarea
                     id="notes"
                     rows="3"
-                    placeholder="Anything we should know?"
-                    data-i18n-placeholder="appoint.notesPlaceholder"
+                    placeholder="{{ trans('appoint.notesPlaceholder') }}"
                 ></textarea>
 
                 <!-- Submit -->
                 <button
                     type="submit"
                     class="btn primary"
-                    data-i18n="appoint.confirmBtn"
                 >
-                    Confirm Appointment
+                    {{ trans('appoint.confirmBtn') }}
                 </button>
 
             </form>
@@ -217,9 +193,7 @@
             <!-- Appointments list -->
             <div class="appoint-list-wrap">
 
-                <h2 class="appoint-list-title" data-i18n="appoint.upcomingTitle">
-                    Your upcoming appointments
-                </h2>
+                <h2 class="appoint-list-title">{{ trans('appoint.upcomingTitle') }}</h2>
 
                 <div id="appoint-list" class="appoint-list"></div>
 
@@ -227,9 +201,8 @@
                     type="button"
                     id="clear-appoint"
                     class="btn ghost"
-                    data-i18n="appoint.pastBtn"
                 >
-                    Passed appointments
+                    {{ trans('appoint.pastBtn') }}
                 </button>
 
             </div>
@@ -251,8 +224,8 @@
             aria-labelledby="passed-appointments-title"
         >
             <div class="passed-appointments-header">
-                <h2 id="passed-appointments-title" data-i18n="appoint.pastTitle">
-                    Past appointments
+                <h2 id="passed-appointments-title">
+                    {{ trans('appoint.pastTitle') }}
                 </h2>
 
                 <button
